@@ -6,16 +6,15 @@ import Message from './Message';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { participantsSelector } from '../reducers/storyReducer';
 import { renderNext } from '../actions/storyActions';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import Scroll from 'react-scroll';
 
 import styles from './Dialogue.scss';
-import * as ReactDOM from "react/lib/ReactDOM";
 
 class Dialogue extends React.Component {
 
   scrollToBottom = () => {
-    // window.scrollTo(0, document.body.scrollHeight);
-    const node = ReactDOM.findDOMNode(this.placeholder);
-    node.scrollIntoView({behavior: "smooth"});
+    Scroll.animateScroll.scrollToBottom();
   };
 
   componentDidMount() {
@@ -37,26 +36,34 @@ class Dialogue extends React.Component {
     // console.log('************Dialogue', messages);
     // console.log('************Dialogue participants=', participants && participants.toJS());
 
+    const messagesToLoad = messages && messages.map((message, index) => {
+        return (
+          <Message
+            className={classNames(className)}
+            key={index}
+            name={message.get('speaker')}
+            nameColor={participants.get(message.get('speaker')).get('color')}
+            text={message.get('text')}
+          />
+        );
+      });
+
     return (
       <div
         className={classNames(className, styles.dialogue)}
         onClick={() => this.handleClick()}
       >
+        <ReactCSSTransitionGroup
+          transitionName="loadMessage"
+          transitionAppear={true}
+          transitionAppearTimeout={500}
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={300}
+        >
         {/*<div className={classNames(className, styles.messages)}>*/}
-          {
-            messages && messages.map((message, index) => {
-              return (
-                <Message
-                  className={classNames(className)}
-                  key={index}
-                  name={message.get('speaker')}
-                  nameColor={participants.get(message.get('speaker')).get('color')}
-                  text={message.get('text')}
-                />
-              );
-            })
-          }
+          {messagesToLoad}
         {/*</div>*/}
+        </ReactCSSTransitionGroup>
         <div
           ref={(elem) => { this.placeholder = elem; }}
           className={classNames(className, styles.placeholder)}
@@ -65,8 +72,6 @@ class Dialogue extends React.Component {
     );
   }
 }
-
-
 
 Dialogue.propTypes = {
   messages: ImmutablePropTypes.list,

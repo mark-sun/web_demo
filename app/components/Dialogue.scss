@@ -22,3 +22,30 @@
   //background-color: #3aa3e3;
 }
 
+
+.loadMessage-enter {
+  opacity: 0.01;
+}
+
+.loadMessage-enter.loadMessage-enter-active {
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+
+.loadMessage-leave {
+  opacity: 1;
+}
+
+.loadMessage-leave.loadMessage-leave-active {
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
+}
+
+.loadMessage-appear {
+  opacity: 0.01;
+}
+
+.loadMessage-appear.loadMessage-appear-active {
+  opacity: 1;
+  transition: opacity .5s ease-in;
+}
