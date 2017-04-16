@@ -1,0 +1,20 @@
+:local(.messageBox) {
+  position: relative;
+  background-color: white;
+  border-radius: 5px;
+  border: 0.3px solid #c4c4c4;
+  padding: 5px;
+  margin: 8px 8px 0
+}
+
+:local(.name) {
+  font-size: 10pt;
+}
+
+:local(.messagesList) {
+  padding: 5px 0px;
+}
+
+:local(.messageText) {
+  font-size: 14pt;
+}

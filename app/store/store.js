@@ -1,7 +1,7 @@
 import { applyMiddleware, createStore, compose } from 'redux';
 import createLogger from 'redux-logger';
 import Immutable from 'immutable';
-import reducer from '../reducers';
+import reducer from '../reducers/storyReducer';
 import thunk from 'redux-thunk';
 
 const logger = createLogger({

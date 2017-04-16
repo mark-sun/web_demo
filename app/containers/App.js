@@ -1,20 +1,20 @@
-import React, { Component, PropTypes } from 'react'
-import { connect } from 'react-redux'
-import Helmet from 'react-helmet'
+import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { loadStory } from '../actions/storyActions';
+import StoryReader from './StoryReader';
 
 class App extends Component {
+
+  componentDidMount() {
+    console.log('************App.componentDidMount');
+    this.props.loadStory({ storyId: 'story_1' });
+  }
+
   render() {
+    console.log('************App.render');
     return (
       <div>
-        <Helmet
-          defaultTitle="Redux real-world example"
-          titleTemplate="%s - Redux real-world example"
-          meta={[
-            {"name": "description", "content": "A boilerplate doing universal/isomorphic rendering with Redux + React-router + Express"},
-          ]}
-          htmlAttributes={{"lang": "en"}}
-        />
-        {this.props.children}
+        <StoryReader />
       </div>
     )
   }
@@ -24,4 +24,4 @@ function mapStateToProps(state) {
   return {}
 }
 
-export default connect(mapStateToProps)(App)
+export default connect(mapStateToProps, { loadStory })(App)
