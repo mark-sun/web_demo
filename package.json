@@ -1,5 +1,6 @@
 {
-  "name": "react-dropdown",
+  "name": "web_demo",
+  "homepage": "https://mark-sun.github.io/web_demo",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -28,6 +29,7 @@
   "dependencies": {
     "babel-polyfill": "^6.5.0",
     "classnames": "^2.2.0",
+    "gh-pages": "^0.12.0",
     "immutable": "^3.7.6",
     "json-loader": "^0.5.4",
     "react": "^0.14.0",
