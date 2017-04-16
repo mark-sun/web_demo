@@ -25,10 +25,6 @@ class Dialogue extends React.Component {
     this.scrollToBottom();
   }
 
-  handleClick() {
-    this.props.renderNext();
-  }
-
   render() {
 
     let { messages, className, participants } = this.props;
@@ -39,7 +35,6 @@ class Dialogue extends React.Component {
     const messagesToLoad = messages && messages.map((message, index) => {
         return (
           <Message
-            className={classNames(className)}
             key={index}
             name={message.get('speaker')}
             nameColor={participants.get(message.get('speaker')).get('color')}
@@ -51,7 +46,7 @@ class Dialogue extends React.Component {
     return (
       <div
         className={classNames(className, styles.dialogue)}
-        onClick={() => this.handleClick()}
+        onClick={() => this.props.renderNext()}
       >
         <ReactCSSTransitionGroup
           transitionName="loadMessage"
@@ -60,13 +55,11 @@ class Dialogue extends React.Component {
           transitionEnterTimeout={500}
           transitionLeaveTimeout={300}
         >
-        {/*<div className={classNames(className, styles.messages)}>*/}
           {messagesToLoad}
-        {/*</div>*/}
         </ReactCSSTransitionGroup>
         <div
           ref={(elem) => { this.placeholder = elem; }}
-          className={classNames(className, styles.placeholder)}
+          className={styles.placeholder}
         />
       </div>
     );

@@ -13,9 +13,7 @@ class App extends Component {
   render() {
     console.log('************App.render');
     return (
-      <div>
-        <StoryReader />
-      </div>
+      <StoryReader />
     )
   }
 }
