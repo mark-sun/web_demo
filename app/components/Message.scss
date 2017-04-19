@@ -2,19 +2,19 @@
   position: relative;
   background-color: white;
   border-radius: 2vw;
-  border: 0.3px solid #c4c4c4;
-  padding: 5px;
-  margin: 8px 8px 0
+  border: 0.5vw solid #c4c4c4;
+  padding: 1vw;
+  margin: 2vw 2vw 0
 }
 
 :local(.name) {
-  font-size: 3vh;
+  font-size: 2vh;
 }
 
 :local(.messagesList) {
-  padding: 5px 0;
+  //padding: 5px 0;
 }
 
 :local(.messageText) {
-  font-size: 4.5vh;
+  font-size: 3.5vh;
 }
