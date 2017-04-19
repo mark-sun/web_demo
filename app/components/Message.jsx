@@ -11,7 +11,7 @@ export default function Message({
   nameColor,
   text,
 }) {
-  console.log(key, name, nameColor, text);
+  // console.log('^^^^^^^^^^^^^', key, name, nameColor, text);
   return (
     <div
       className={classNames(className, styles.messageBox)}

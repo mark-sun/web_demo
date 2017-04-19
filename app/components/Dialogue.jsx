@@ -8,13 +8,45 @@ import { participantsSelector } from '../reducers/storyReducer';
 import { renderNext } from '../actions/storyActions';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Scroll from 'react-scroll';
+import * as ReactDOM from 'react/lib/ReactDOM';
+import MobileDetect from 'mobile-detect';
 
 import styles from './Dialogue.scss';
 
 class Dialogue extends React.Component {
 
+  static useAnimation() {
+    const mobileDetect = new MobileDetect(window.navigator.userAgent);
+    if (window) {
+      return !(mobileDetect.os() === 'iOS');
+    }
+    return true;
+  }
+
+  static getMessagesToLoad(messagesToLoad) {
+    if (Dialogue.useAnimation()) {
+      return (<ReactCSSTransitionGroup
+        transitionName="loadMessage"
+        transitionAppear={true}
+        transitionAppearTimeout={500}
+        transitionEnterTimeout={500}
+        transitionLeaveTimeout={300}
+      >
+        {messagesToLoad}
+      </ReactCSSTransitionGroup>);
+    } else {
+      return messagesToLoad;
+    }
+  }
+
   scrollToBottom = () => {
-    Scroll.animateScroll.scrollToBottom();
+    if (Dialogue.useAnimation()) {
+      Scroll.animateScroll.scrollToBottom();
+    } else {
+      // window.scrollTo(0, document.body.scrollHeight);
+      const node = ReactDOM.findDOMNode(this.placeholder);
+      node.scrollIntoView({behavior: "smooth"});
+    }
   };
 
   componentDidMount() {
@@ -32,31 +64,23 @@ class Dialogue extends React.Component {
     // console.log('************Dialogue', messages);
     // console.log('************Dialogue participants=', participants && participants.toJS());
 
-    const messagesToLoad = messages && messages.map((message, index) => {
-        return (
-          <Message
-            key={index}
-            name={message.get('speaker')}
-            nameColor={participants.get(message.get('speaker')).get('color')}
-            text={message.get('text')}
-          />
-        );
-      });
+    const messagesToLoad = messages && Dialogue.getMessagesToLoad(messages.map((message, index) => {
+      return (
+        <Message
+          key={index}
+          name={message.get('speaker')}
+          nameColor={participants.get(message.get('speaker')).get('color')}
+          text={message.get('text')}
+        />
+      );
+    }));
 
     return (
       <div
         className={classNames(className, styles.dialogue)}
         onClick={() => this.props.renderNext()}
       >
-        <ReactCSSTransitionGroup
-          transitionName="loadMessage"
-          transitionAppear={true}
-          transitionAppearTimeout={500}
-          transitionEnterTimeout={500}
-          transitionLeaveTimeout={300}
-        >
-          {messagesToLoad}
-        </ReactCSSTransitionGroup>
+        {messagesToLoad}
         <div
           ref={(elem) => { this.placeholder = elem; }}
           className={styles.placeholder}

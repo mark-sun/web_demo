@@ -4,7 +4,7 @@ import { createSelector } from 'reselect';
 
 export const participantsSelector = state => state.get('participants');
 export const dialogueSelector = state => {
-  console.log('************dialogueSelector: state=', state.toJS());
+  // console.log('************dialogueSelector: state=', state.toJS());
   return state.get('dialogue');
 };
 const counterSelector = state => state.get('counter');
@@ -14,7 +14,7 @@ export const renderedSelector = createSelector(
   counterSelector,
   (dialogue, position) => {
     if (dialogue) {
-      console.log('renderSelector+++++++++++++++++++++++', position, '*******', dialogue.slice(0, position));
+      // console.log('renderSelector+++++++++++++++++++++++', position, '*******', dialogue.slice(0, position));
       return dialogue.slice(0, position);
     } else {
       return dialogue;

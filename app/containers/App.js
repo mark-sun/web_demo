@@ -6,12 +6,12 @@ import StoryReader from './StoryReader';
 class App extends Component {
 
   componentDidMount() {
-    console.log('************App.componentDidMount');
+    // console.log('************App.componentDidMount');
     this.props.loadStory({ storyId: 'story_1' });
   }
 
   render() {
-    console.log('************App.render');
+    // console.log('************App.render');
     return (
       <StoryReader />
     )
