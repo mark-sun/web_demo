@@ -14,7 +14,7 @@ export const renderedSelector = createSelector(
   counterSelector,
   (dialogue, position) => {
     if (dialogue) {
-      console.log('renderSlector+++++++++++++++++++++++', position, '*******', dialogue.slice(0, position));
+      console.log('renderSelector+++++++++++++++++++++++', position, '*******', dialogue.slice(0, position));
       return dialogue.slice(0, position);
     } else {
       return dialogue;
@@ -38,7 +38,7 @@ export default function reducer(state = defaultState, action) {
         .reduce((map, obj) => { return map.set(obj.get('name'), obj); }, Immutable.Map({}));
       return state.set('dialogue', dialogue)
         .set('participants', participants)
-        .set('counter', 0);
+        .set('counter', 1);
     }
 
     case ActionType.CLICK_NEXT_BUTTON: {
