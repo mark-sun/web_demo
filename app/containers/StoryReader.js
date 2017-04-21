@@ -9,11 +9,6 @@ import styles from './StoryReader.scss';
 
 class StoryReader extends React.Component {
 
-  componentDidMount() {
-    // console.log('************StoryReader.componentDidMount');
-    this.props.loadStory({ storyId: 'story_1' });
-  }
-
   render() {
     // console.log('************StoryReader', this.props);
     // console.log('************StoryReader storyId', this.props.storyId);

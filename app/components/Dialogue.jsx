@@ -2,8 +2,9 @@ import classNames from 'classnames';
 import { connect } from 'react-redux';
 import React from 'react';
 import { createStructuredSelector } from 'reselect';
-import Message from './Message';
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import InfoMessage from './InfoMessage';
+import Message from './Message';
 import { participantsSelector } from '../reducers/storyReducer';
 import { renderNext } from '../actions/storyActions';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
@@ -65,14 +66,23 @@ class Dialogue extends React.Component {
     // console.log('************Dialogue participants=', participants && participants.toJS());
 
     const messagesToLoad = messages && Dialogue.getMessagesToLoad(messages.map((message, index) => {
-      return (
-        <Message
-          key={index}
-          name={message.get('speaker')}
-          nameColor={participants.get(message.get('speaker')).get('color')}
-          text={message.get('text')}
-        />
-      );
+      if (participants.get(message.get('speaker')).get('type') === 'info') {
+        return (
+          <InfoMessage
+            text={message.get('text')}
+          />
+        );
+      } else {
+        return (
+          <Message
+            key={index}
+            name={message.get('speaker')}
+            nameColor={participants.get(message.get('speaker')).get('color')}
+            text={message.get('text')}
+            type={participants.get(message.get('speaker')).get('type')}
+          />
+        );
+      }
     }));
 
     return (
@@ -95,12 +105,9 @@ Dialogue.propTypes = {
   participants: ImmutablePropTypes.Map,
 };
 
-const selector = createStructuredSelector(
-  {
-    participants: participantsSelector,
-  }
-);
-
+const selector = createStructuredSelector({
+  participants: participantsSelector,
+});
 
 export default connect(selector, {
   renderNext

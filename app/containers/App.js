@@ -7,7 +7,7 @@ class App extends Component {
 
   componentDidMount() {
     // console.log('************App.componentDidMount');
-    this.props.loadStory({ storyId: 'story_1' });
+    this.props.loadStory({ storyId: 'story_sisi' });
   }
 
   render() {
