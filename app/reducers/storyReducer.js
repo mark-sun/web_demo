@@ -2,12 +2,14 @@ import ActionType from '../constants/ActionTypes';
 import Immutable from 'immutable';
 import { createSelector } from 'reselect';
 
-export const participantsSelector = state => state.get('participants');
+export const counterSelector = state => state.get('counter');
 export const dialogueSelector = state => {
   // console.log('************dialogueSelector: state=', state.toJS());
   return state.get('dialogue');
 };
-const counterSelector = state => state.get('counter');
+export const participantsSelector = state => state.get('participants');
+export const storyMetaSelector = state => state.get('storyMeta');
+export const storyNameSelector = state => storyMetaSelector(state).get('storyName');
 
 export const renderedSelector = createSelector(
   dialogueSelector,
@@ -23,10 +25,11 @@ export const renderedSelector = createSelector(
 );
 
 const defaultState = Immutable.Map({
-  loading: false,
-  dialogue: Immutable.List([]),
-  participants: Immutable.Map({}),
   counter: 0,
+  dialogue: Immutable.List([]),
+  loading: false,
+  participants: Immutable.Map({}),
+  storyMeta: Immutable.Map({}),
 });
 
 export default function reducer(state = defaultState, action) {
@@ -36,9 +39,11 @@ export default function reducer(state = defaultState, action) {
       const participants = action.story
         .get('participants')
         .reduce((map, obj) => { return map.set(obj.get('name'), obj); }, Immutable.Map({}));
-      return state.set('dialogue', dialogue)
+      return state.set('counter', 0)
+        .set('dialogue', dialogue)
         .set('participants', participants)
-        .set('counter', 1);
+        .set('storyMeta', action.story.get('storyMeta'));
+
     }
 
     case ActionType.CLICK_NEXT_BUTTON: {

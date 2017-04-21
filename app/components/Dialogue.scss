@@ -9,10 +9,17 @@
   position: relative;
 }
 
-:local(.messages) {
-  //background-color: #8cd5b7;
-  display: flex;
-  flex-direction: column;
+:local(.hintSection) {
+  text-align: center;
+}
+
+:local(.description) {
+  font-size: 2vh;
+}
+
+:local(.hint) {
+  font-size: 1.8vh;
+  font-style: italic;
 }
 
 :local(.placeholder) {
@@ -21,7 +28,6 @@
   margin: 5px 5px;
   //background-color: #3aa3e3;
 }
-
 
 .loadMessage-enter {
   opacity: 0.01;

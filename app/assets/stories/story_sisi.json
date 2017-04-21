@@ -1,5 +1,8 @@
 {
-  "storyName": "少爷和姑娘",
+  "storyMeta": {
+    "name": "思思&成哲",
+    "introduction": "我想写一个每个人都能读懂的故事，献给我们的青春。"
+  },
   "participants": [
     {
       "name": "思思",

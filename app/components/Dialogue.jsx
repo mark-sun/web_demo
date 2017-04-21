@@ -1,11 +1,11 @@
 import classNames from 'classnames';
 import { connect } from 'react-redux';
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { createStructuredSelector } from 'reselect';
+import { counterSelector, participantsSelector, storyMetaSelector } from '../reducers/storyReducer';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import InfoMessage from './InfoMessage';
 import Message from './Message';
-import { participantsSelector } from '../reducers/storyReducer';
 import { renderNext } from '../actions/storyActions';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Scroll from 'react-scroll';
@@ -85,11 +85,23 @@ class Dialogue extends React.Component {
       }
     }));
 
+    const hintSection = this.props.counter === 0 ?
+      (
+        <div className={classNames(styles.hintSection)}>
+          <text className={classNames(styles.description)}>
+            {this.props.storyMeta && this.props.storyMeta.get('introduction')}
+          </text>
+          <br/>
+          <text className={classNames(styles.hint)}>（点击屏幕，继续故事）</text>
+        </div>
+      ) : null;
+
     return (
       <div
         className={classNames(className, styles.dialogue)}
         onClick={() => this.props.renderNext()}
       >
+        {hintSection}
         {messagesToLoad}
         <div
           ref={(elem) => { this.placeholder = elem; }}
@@ -103,10 +115,13 @@ class Dialogue extends React.Component {
 Dialogue.propTypes = {
   messages: ImmutablePropTypes.list,
   participants: ImmutablePropTypes.Map,
+  storyMeta: ImmutablePropTypes.Map,
 };
 
 const selector = createStructuredSelector({
+  counter: counterSelector,
   participants: participantsSelector,
+  storyMeta: storyMetaSelector,
 });
 
 export default connect(selector, {
