@@ -9,16 +9,29 @@
   position: relative;
 }
 
-:local(.hintSection) {
+:local(.initialDisplay) {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 50vh;
   text-align: center;
 }
 
+:local(.name) {
+  font-size: 3vh;
+}
+
+:local(.author) {
+  font-size: 2.8vh;
+}
+
 :local(.description) {
-  font-size: 2vh;
+  font-size: 3vh;
+  white-space:pre;
 }
 
 :local(.hint) {
-  font-size: 1.8vh;
+  font-size: 2vh;
   font-style: italic;
 }
 

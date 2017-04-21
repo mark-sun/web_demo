@@ -87,9 +87,13 @@ class Dialogue extends React.Component {
 
     const hintSection = this.props.counter === 0 ?
       (
-        <div className={classNames(styles.hintSection)}>
+        <div className={classNames(styles.initialDisplay)}>
           <text className={classNames(styles.description)}>
             {this.props.storyMeta && this.props.storyMeta.get('introduction')}
+          </text>
+          <br/>
+          <text className={classNames(styles.author)}>
+            {this.props.storyMeta && '——' + this.props.storyMeta.get('author')}
           </text>
           <br/>
           <text className={classNames(styles.hint)}>（点击屏幕，继续故事）</text>
