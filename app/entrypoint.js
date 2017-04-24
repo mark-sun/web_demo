@@ -8,7 +8,7 @@ import ReactDOM from 'react-dom';
 import store from './store/store';
 import StoryReader from './containers/StoryReader';
 import App from './containers/App';
-import { Route, BrowserRouter as Router } from 'react-router-dom';
+import { Route, HashRouter as Router } from 'react-router-dom';
 
 ReactDOM.render(
   <Provider store={store}>
