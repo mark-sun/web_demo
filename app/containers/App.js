@@ -1,19 +1,18 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { Link, Route } from "react-router-dom";
 import { loadStory } from '../actions/storyActions';
 import StoryReader from './StoryReader';
 
 class App extends Component {
 
-  componentDidMount() {
-    // console.log('************App.componentDidMount');
-    this.props.loadStory({ storyId: 'story_sisi' });
-  }
-
   render() {
-    // console.log('************App.render');
+    console.log('************App.render window=', this.props.location);
     return (
-      <StoryReader />
+      <div>
+        <Link to="/story">Story</Link>
+        <Route exact path="/story" component={StoryReader} />
+      </div>
     )
   }
 }

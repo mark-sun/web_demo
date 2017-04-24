@@ -8,11 +8,16 @@ import ReactDOM from 'react-dom';
 import store from './store/store';
 import StoryReader from './containers/StoryReader';
 import App from './containers/App';
-import { Route, Router, browserHistory } from 'react-router';
+import { Route, BrowserRouter as Router } from 'react-router-dom';
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <Router>
+      <div>
+        <Route exact path="/" component={App} />
+        <Route exact path="/story" component={StoryReader} />
+      </div>
+    </Router>
   </Provider>,
   document.getElementById('content')
 );
