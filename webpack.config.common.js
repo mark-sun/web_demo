@@ -30,5 +30,19 @@ module.exports = {
       'sass'
     ]
   },
+  fileLoader: {
+    test: /\.(jpg|png|svg)$/,
+    loader: 'file-loader',
+    options: {
+      name: '[path][name].[hash].[ext]',
+    },
+  },
+  urlLoader: {
+    test: /\.(jpg|png|svg)$/,
+    loader: 'url-loader',
+    options: {
+      limit: 25000,
+    },
+  },
   postcss: [autoprefixer]
 };

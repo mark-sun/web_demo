@@ -4,7 +4,7 @@ var webpack = require('webpack');
 
 module.exports = {
   resolve: {
-    extensions: ['', '.js', '.jsx', '.json', '']
+    extensions: ['', '.js', '.jsx', '.json', '', '.svg']
   },
   entry: './app/entrypoint',
   output: {
@@ -17,6 +17,8 @@ module.exports = {
     loaders: [
       common.jsLoader,
       common.cssLoader,
+      common.urlLoader,
+      common.fileLoader,
     ]
   },
   devtool: 'source-map',

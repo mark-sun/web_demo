@@ -4,7 +4,7 @@ var webpack = require('webpack');
 
 module.exports = {
   resolve: {
-    extensions: ['', '.js', '.jsx', '.json', '']
+    extensions: ['', '.js', '.jsx', '.json', '', '.svg']
   },
   entry: [
     'webpack/hot/dev-server',
@@ -19,6 +19,8 @@ module.exports = {
     loaders: [
       common.jsLoader,
       common.cssLoader,
+      common.urlLoader,
+      common.fileLoader,
     ]
   },
   devtool: 'eval',

@@ -1,18 +1,19 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { Link, Route } from "react-router-dom";
 import { loadStory } from '../actions/storyActions';
+import queryString from 'query-string';
 import StoryReader from './StoryReader';
 
 class App extends Component {
 
+  componentWillMount() {
+    const parsed = queryString.parse(this.props.location.search);
+    this.props.loadStory({ storyId: parsed.storyId });
+  }
+
   render() {
-    console.log('************App.render window=', this.props.location);
     return (
-      <div>
-        <Link to="/story">Story</Link>
-        <Route exact path="/story" component={StoryReader} />
-      </div>
+      <StoryReader/>
     )
   }
 }

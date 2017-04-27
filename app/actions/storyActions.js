@@ -1,5 +1,6 @@
-import Immutable from 'immutable';
 import ActionTypes from '../constants/ActionTypes';
+import Promise from 'bluebird';
+import StoryWebUtil from '../utils/StoryWebUtil';
 
 export function renderNext() {
   return {
@@ -9,10 +10,16 @@ export function renderNext() {
 
 export function loadStory({ storyId }) {
   return (dispatch) => {
-    const story = Immutable.fromJS(require(`../assets/stories/${storyId}.json`));
     dispatch({
       type: ActionTypes.LOAD_STORY,
-      story,
+    });
+    Promise.resolve(
+      StoryWebUtil.getStoryJson({storyId})
+    ).then(story => {
+      dispatch({
+        type: ActionTypes.LOAD_STORY_SUCCESS,
+        story,
+      })
     });
   };
 }
