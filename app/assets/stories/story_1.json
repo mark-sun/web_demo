@@ -13,10 +13,23 @@
   "dialogue": [
     {
       "speaker": "少爷",
+      "type": "ASIDE",
       "text": [
-        "Hello, I'm 少爷. ",
-        "Who are you? "
+        "Hello, 少爷. ",
+        "I'm 姑娘. What's up?"
       ]
+    },
+    {
+      "speaker": "少爷",
+      "type": "TYPING",
+      "time": 30,
+      "text": []
+    },
+    {
+      "speaker": "少爷",
+      "type": "TYPING",
+      "time": 2,
+      "text": []
     },
     {
       "speaker": "姑娘",

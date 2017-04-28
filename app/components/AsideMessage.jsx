@@ -2,9 +2,9 @@ import classNames from 'classnames';
 import React, { PropTypes } from 'react';
 import { List } from 'immutable';
 
-import styles from './InfoMessage.scss';
+import styles from './AsideMessage.scss';
 
-export default function InfoMessage({
+export default function AsideMessage({
   className,
   text,
 }) {
@@ -17,9 +17,9 @@ export default function InfoMessage({
         className={styles.messagesList}
       >
         {
-          text.map(msg => {
+          text.map((msg, idx) => {
             return (
-              <div>
+              <div key={idx}>
                 <text
                   className={styles.messageText}
                 >
@@ -34,7 +34,7 @@ export default function InfoMessage({
   );
 }
 
-InfoMessage.propTypes = {
+AsideMessage.propTypes = {
   className: PropTypes.string,
   text: PropTypes.instanceOf(List).isRequired,
 };

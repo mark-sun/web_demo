@@ -17,7 +17,7 @@ module.exports = {
     loaders: [
       common.jsLoader,
       common.cssLoader,
-      common.urlLoader,
+      common.svgLoader,
       common.fileLoader,
     ]
   },

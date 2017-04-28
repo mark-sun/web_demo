@@ -31,18 +31,12 @@ module.exports = {
     ]
   },
   fileLoader: {
-    test: /\.(jpg|png|svg)$/,
-    loader: 'file-loader',
-    options: {
-      name: '[path][name].[hash].[ext]',
-    },
+    test: /\.svg$/,
+    loader: 'file-loader'
   },
-  urlLoader: {
-    test: /\.(jpg|png|svg)$/,
-    loader: 'url-loader',
-    options: {
-      limit: 25000,
-    },
+  svgLoader: {
+    test: /\.svg$/,
+    loader: 'raw-loader'
   },
   postcss: [autoprefixer]
 };

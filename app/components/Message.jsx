@@ -6,12 +6,11 @@ import styles from './Message.scss';
 
 export default function Message({
   className,
-  key,
   name,
   nameColor,
   text,
 }) {
-  // console.log('^^^^^^^^^^^^^', key, name, nameColor, text);
+  console.log('^^^^^^^^^^^^^', name, nameColor, text.toJS());
   return (
     <div
       className={classNames(className, styles.messageBox)}
@@ -29,9 +28,9 @@ export default function Message({
         className={styles.messagesList}
       >
         {
-          text.map(msg => {
+          text.map((msg, idx) => {
             return (
-              <div>
+              <div key={idx}>
                 <text
                   className={styles.messageText}
                 >
@@ -48,9 +47,7 @@ export default function Message({
 
 Message.propTypes = {
   className: PropTypes.string,
-  key: PropTypes.number,
   name: PropTypes.string,
   nameColor: PropTypes.string.isRequired,
   text: PropTypes.instanceOf(List).isRequired,
-  type: PropTypes.string.isRequired,
 };
