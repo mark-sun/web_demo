@@ -12,7 +12,6 @@
   ],
   "dialogue": [
     {
-      "speaker": "少爷",
       "type": "ASIDE",
       "text": [
         "Hello, 少爷. ",
@@ -22,13 +21,52 @@
     {
       "speaker": "少爷",
       "type": "TYPING",
-      "time": 30,
-      "text": []
+      "time": 3
+    },
+    {
+      "speaker": "姑娘",
+      "text": [
+        "Hello, 少爷. ",
+        "I'm 姑娘. What's up?"
+      ]
+    },
+    {
+      "speaker": "姑娘",
+      "type": "TYPING",
+      "time": 3
+    },
+    {
+      "speaker": "姑娘",
+      "text": [
+        "Hello, 少爷. ",
+        "I'm 姑娘. What's up?"
+      ]
+    },
+    {
+      "speaker": "姑娘",
+      "text": [
+        "Hello, 少爷. ",
+        "I'm 姑娘. What's up?"
+      ]
+    },
+    {
+      "speaker": "姑娘",
+      "text": [
+        "Hello, 少爷. ",
+        "I'm 姑娘. What's up?"
+      ]
+    },
+    {
+      "speaker": "姑娘",
+      "text": [
+        "Hello, 少爷. ",
+        "I'm 姑娘. What's up?"
+      ]
     },
     {
       "speaker": "少爷",
       "type": "TYPING",
-      "time": 2,
+      "time": 5,
       "text": []
     },
     {

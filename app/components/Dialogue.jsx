@@ -9,7 +9,7 @@ import * as ReactDOM from 'react/lib/ReactDOM';
 import Scroll from 'react-scroll';
 
 import AsideMessage from './AsideMessage';
-import { counterSelector, participantsSelector, storyMetaSelector } from '../reducers/storyReducer';
+import { counterSelector, participantsSelector, storyMetaSelector, typingParticipantsSelector } from '../reducers/storyReducer';
 import Message from './Message';
 import { renderNext, blockForTyping } from '../actions/storyActions';
 import TypingMessage from './TypingMessage';
@@ -62,9 +62,9 @@ class Dialogue extends React.Component {
     this.scrollToBottom();
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
     let { blockForTyping, counter, messages } = this.props;
-    if (messages.last().get('type') === 'TYPING') {
+    if (prevProps.counter != counter && messages.last().get('type') === 'TYPING') {
       const message = messages.last();
       blockForTyping({ index: messages.size-1, speaker: message.get('speaker'), time: message.get('time') })
     }
@@ -74,9 +74,18 @@ class Dialogue extends React.Component {
 
   render() {
 
-    let { blockForTyping, counter, messages, className, participants, renderNext, storyMeta } = this.props;
+    let { 
+      blockForTyping, 
+      counter, 
+      className, 
+      messages, 
+      participants, 
+      renderNext, 
+      storyMeta,
+      typingPaticipants, 
+    } = this.props;
 
-    console.log('************Dialogue', messages && messages.toJS());
+    // console.log('************Dialogue', messages && messages.toJS());
     // console.log('************Dialogue participants=', participants && participants.toJS());
 
     const messagesToLoad = messages && Dialogue.getMessagesToLoad(messages.map((message, index) => {
@@ -97,6 +106,14 @@ class Dialogue extends React.Component {
           />
         );
       } else if (message.get('type') === 'TYPING') {
+        if (typingPaticipants.get(message.get('speaker')) === index) {
+          return <TypingMessage 
+            key={index}
+            name={message.get('speaker')}
+            nameColor={participants.get(message.get('speaker')).get('color')}
+          />
+        }
+        
         return (<noscript key={index} />);
       }
     }));
@@ -116,11 +133,13 @@ class Dialogue extends React.Component {
         </div>
       ) : null;
     
-    /*const typingSection = <TypingMessage 
-            key={index}
-            name={message.get('speaker')}
-            nameColor={participants.get(message.get('speaker')).get('color')}
-          />*/
+    /*const typingSection = (typingPaticipants.keySeq().toArray().map((tp, index) => {
+      return <TypingMessage 
+        key={index}
+        name={tp}
+        nameColor={participants.get(tp).get('color')}
+      />
+    }));*/
 
     return (
       <div
@@ -129,6 +148,7 @@ class Dialogue extends React.Component {
       >
         {hintSection}
         {messagesToLoad}
+        {/*{typingSection}*/}
         <div
           ref={(elem) => { this.placeholder = elem; }}
           className={styles.placeholder}
@@ -145,12 +165,14 @@ Dialogue.propTypes = {
   participants: ImmutablePropTypes.map,
   renderNext: PropTypes.func,
   storyMeta: ImmutablePropTypes.map,
+  typingPaticipants: ImmutablePropTypes.map,
 };
 
 const selector = createStructuredSelector({
   counter: counterSelector,
   participants: participantsSelector,
   storyMeta: storyMetaSelector,
+  typingPaticipants: typingParticipantsSelector,
 });
 
 export default connect(selector, {

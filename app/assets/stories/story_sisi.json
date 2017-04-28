@@ -120,7 +120,8 @@
     },
     {
       "speaker": "思思",
-      "text": []
+      "type": "TYPING",
+      "time": 2
     },
     {
       "speaker": "思思",

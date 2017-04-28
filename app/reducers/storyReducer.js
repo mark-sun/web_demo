@@ -10,7 +10,7 @@ export const loadingSelector = state => state.get('loading');
 export const participantsSelector = state => state.get('participants');
 export const storyMetaSelector = state => state.get('storyMeta');
 export const storyNameSelector = state => storyMetaSelector(state).get('storyName');
-export const typingParticipantsSelector = state => state.get('typingParticipants');
+export const typingParticipantsSelector = state => state.get('typingParticipants').sort((i1, i2) => i1-i2);
 
 export const renderedSelector = createSelector(
   dialogueSelector,
@@ -30,19 +30,14 @@ const defaultState = Immutable.Map({
   loading: false,
   participants: Immutable.Map({}),
   storyMeta: Immutable.Map({}),
-  typingParticipants: Immutable.Map(),
+  typingParticipants: Immutable.Map({}),
 });
 
 export default function reducer(state = defaultState, action) {
   switch (action.type) {
     case ActionType.BLOCK_FOR_TYPING: {
-      // console.log('participants', state.get('participants').toJS());
-      // console.log('typingParticipants', state.get('typingParticipants').toJS());
-      // console.log('action.speaker', action.speaker);
-      // console.log('&&&&&^^^^^^^^^^^^typingParticipants', state.get('typingParticipants').get(action.speaker) && state.get('typingParticipants').get(action.speaker).toJS());
-      // console.log('&&&&&&&&&&&&&&&&participants', state.get('participants').get(action.speaker));
       return state.setIn(
-        ['typingParticipants', [action.speaker]], action.index
+        ['typingParticipants', action.speaker], action.index
       );
     }
 
@@ -50,7 +45,7 @@ export default function reducer(state = defaultState, action) {
       if (dialogueSelector(state).size <= counterSelector(state)) {
         return state;
       }
-      const nextMessage = dialogueSelector(state).get(counterSelector(state)+1);
+      const nextMessage = dialogueSelector(state).get(counterSelector(state));
       if (typingParticipantsSelector(state).has(nextMessage.get('speaker'))) {
         return state;
       }
@@ -74,24 +69,13 @@ export default function reducer(state = defaultState, action) {
     }
 
     case ActionType.STOP_TYPING: {
-      return state.setIn(['typingParticipants', action.speaker], null);
-
-
-      // const newState = state.update(
-      //   'typingParticipants',
-      //   typingParticipants => {
-      //     console.log('action.speaker', action.speaker);
-      //     console.log('typingParticipants', typingParticipants.toJS());
-      //     console.log('typingParticipants.get(action.speaker)', typingParticipants.has(action.speaker));
-      //     if (typingParticipants.get(action.speaker) == action.index) {
-      //       return typingParticipants.delete(action.speaker);
-      //     } else {
-      //       return typingParticipants;
-      //     }
-      //   }
-      // );
-      // console.log('********newState=', newState.toJS());
-      return newState;
+      return state.update('typingParticipants', typingParticipants => {
+        if (typingParticipants.get(action.speaker) === action.index) {
+          return typingParticipants.delete(action.speaker);
+        } else {
+          return typingParticipants;
+        }
+      })
     }
 
     default:
