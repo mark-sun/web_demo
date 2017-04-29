@@ -14,8 +14,7 @@ function Message({
   message,
   participants,
 }) {
-  console.log('^^^^^^^^^^^^^', message.toJS());
-  message.get('image') && console.log('$$$$$$$$$$$ img url='+StoryWebUtil.getImageUrl(message.get('image')));
+  // console.log('^^^^^^^^^^^^^', message.toJS());
   return (
     <div
       className={classNames(className, styles.messageBox)}

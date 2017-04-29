@@ -21,9 +21,9 @@ export default class StoryWebUtil {
   }
 
   static getImageUrl(fileName) {
-    // if (process.env.NODE_ENV === 'development') {
-    //   return Immutable.fromJS(require(`../assets/images/${fileName}`));
-    // }
+    if (process.env.NODE_ENV === 'development') {
+      return require(`../assets/images/${fileName}`);
+    }
     return `${StoryWebUtil.ASSET_PREFIX}/images/${fileName}`;
   }
 }
