@@ -93,9 +93,7 @@ class Dialogue extends React.Component {
         return (
           <Message
             key={index}
-            name={message.get('speaker')}
-            nameColor={participants.get(message.get('speaker')).get('color')}
-            text={message.get('text')}
+            message={message}
           />
         );
       } else if (message.get('type') === 'ASIDE') {
@@ -106,6 +104,7 @@ class Dialogue extends React.Component {
           />
         );
       } else if (message.get('type') === 'TYPING') {
+        /*
         if (typingPaticipants.get(message.get('speaker')) === index) {
           return <TypingMessage 
             key={index}
@@ -113,7 +112,7 @@ class Dialogue extends React.Component {
             nameColor={participants.get(message.get('speaker')).get('color')}
           />
         }
-        
+        */
         return (<noscript key={index} />);
       }
     }));
@@ -122,7 +121,7 @@ class Dialogue extends React.Component {
       (
         <div className={classNames(styles.initialDisplay)}>
           <text className={classNames(styles.description)}>
-            {storyMeta && storyMeta.get('introduction')}
+            {storyMeta && (storyMeta.get('introduction') || storyMeta.get('title'))}
           </text>
           <br/>
           <text className={classNames(styles.author)}>
@@ -133,13 +132,13 @@ class Dialogue extends React.Component {
         </div>
       ) : null;
     
-    /*const typingSection = (typingPaticipants.keySeq().toArray().map((tp, index) => {
+    const typingSection = Dialogue.getMessagesToLoad(typingPaticipants.keySeq().toArray().map((tp, index) => {
       return <TypingMessage 
         key={index}
         name={tp}
         nameColor={participants.get(tp).get('color')}
       />
-    }));*/
+    }));
 
     return (
       <div
@@ -148,7 +147,7 @@ class Dialogue extends React.Component {
       >
         {hintSection}
         {messagesToLoad}
-        {/*{typingSection}*/}
+        {typingSection}
         <div
           ref={(elem) => { this.placeholder = elem; }}
           className={styles.placeholder}

@@ -5,6 +5,8 @@ import Promise from 'bluebird';
 export default class StoryWebUtil {
 
   static defaultOptions = {};
+  
+  static ASSET_PREFIX = '//raw.githubusercontent.com/mark-sun/web_demo/master/app/assets';
 
   static getStoryJson({ storyId }) {
     if (process.env.NODE_ENV === 'development') {
@@ -12,11 +14,16 @@ export default class StoryWebUtil {
     }
     return Promise.resolve(axios({
       ...StoryWebUtil.defaultOptions,
-      url: `//raw.githubusercontent.com/mark-sun/web_demo/master/app/assets/stories/${storyId}.json`,
+      url: `${StoryWebUtil.ASSET_PREFIX}/stories/${storyId}.json`,
     })).then(
       response => Immutable.fromJS(response.data)
     )
   }
 
+  static getImageUrl(fileName) {
+    // if (process.env.NODE_ENV === 'development') {
+    //   return Immutable.fromJS(require(`../assets/images/${fileName}`));
+    // }
+    return `${StoryWebUtil.ASSET_PREFIX}/images/${fileName}`;
+  }
 }
-

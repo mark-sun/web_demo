@@ -3,9 +3,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var webpack = require('webpack');
 
 module.exports = {
-  resolve: {
-    extensions: ['', '.js', '.jsx', '.json', '', '.svg']
-  },
+  resolve: common.resolve,
   entry: './app/entrypoint',
   output: {
     filename: 'bundle.[hash].js',

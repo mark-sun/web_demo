@@ -4,7 +4,7 @@ var webpack = require('webpack');
 
 module.exports = {
   resolve: {
-    extensions: ['', '.js', '.jsx', '.json', '']
+    extensions: ['', '.js', '.jsx', '.json', '', '.svg', '.jpeg', '.jpg', '.png']
   },
   jsonLoader: {
     test: /\.json$/,
@@ -31,7 +31,7 @@ module.exports = {
     ]
   },
   fileLoader: {
-    test: /\.svg$/,
+    test: /\.(jpg|jpeg|svg|png)$/,
     loader: 'file-loader'
   },
   svgLoader: {

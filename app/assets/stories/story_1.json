@@ -20,6 +20,32 @@
     },
     {
       "speaker": "少爷",
+      
+      "image": "zhengzaishuru_1.jpg"
+    },
+    {
+      "speaker": "少爷",
+      "text": [
+        "Nothing special. ",
+        "Wanna grab a drink? "
+      ]
+    },
+    {
+      "speaker": "姑娘",
+      "text": [
+        "Nothing special. ",
+        "Wanna grab a drink? "
+      ]
+    },
+    {
+      "speaker": "少爷",
+      "text": [
+        "Nothing special. ",
+        "Wanna grab a drink? "
+      ]
+    },
+    {
+      "speaker": "少爷",
       "type": "TYPING",
       "time": 3
     },

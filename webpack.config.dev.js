@@ -3,9 +3,7 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-  resolve: {
-    extensions: ['', '.js', '.jsx', '.json', '', '.svg']
-  },
+  resolve: common.resolve,
   entry: [
     'webpack/hot/dev-server',
     './app/entrypoint'

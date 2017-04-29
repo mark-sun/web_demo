@@ -1,44 +1,55 @@
 import classNames from 'classnames';
-import React, { PropTypes } from 'react';
+import { connect } from 'react-redux';
+import { createStructuredSelector } from 'reselect';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import { List } from 'immutable';
+import React, { PropTypes } from 'react';
 
+import { participantsSelector } from '../reducers/storyReducer';
+import StoryWebUtil from '../utils/StoryWebUtil';
 import styles from './Message.scss';
 
-export default function Message({
+function Message({
   className,
-  name,
-  nameColor,
-  text,
+  message,
+  participants,
 }) {
-  console.log('^^^^^^^^^^^^^', name, nameColor, text.toJS());
+  console.log('^^^^^^^^^^^^^', message.toJS());
+  message.get('image') && console.log('$$$$$$$$$$$ img url='+StoryWebUtil.getImageUrl(message.get('image')));
   return (
     <div
       className={classNames(className, styles.messageBox)}
     >
       {
-        name && (
-        <text
+        (<text
           className={styles.name}
-          style={{'color': nameColor}}
+          style={{'color': participants.get(message.get('speaker')).get('color')}}
         >
-          {name}
+          {message.get('speaker')}
         </text>)
       }
       <div
         className={styles.messagesList}
       >
         {
-          text.map((msg, idx) => {
+          message.get('text') && message.get('text').map((msg, idx) => {
             return (
               <div key={idx}>
-                <text
-                  className={styles.messageText}
-                >
+                <text className={styles.messageText}>
                   { msg }
                 </text>
               </div>
             );
           })
+        }
+        {
+          message.get('image') && 
+          <div className={styles.imageBox}>
+            <img 
+              className={styles.image}
+              src={StoryWebUtil.getImageUrl(message.get('image'))}
+            />
+          </div>
         }
       </div>
     </div>
@@ -47,7 +58,11 @@ export default function Message({
 
 Message.propTypes = {
   className: PropTypes.string,
-  name: PropTypes.string,
-  nameColor: PropTypes.string.isRequired,
-  text: PropTypes.instanceOf(List).isRequired,
+  participants: ImmutablePropTypes.map,
 };
+
+const selector = createStructuredSelector({
+  participants: participantsSelector,
+});
+
+export default connect(selector, {})(Message);

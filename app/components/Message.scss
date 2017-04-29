@@ -18,3 +18,18 @@
 :local(.messageText) {
   font-size: 3vh;
 }
+
+:local(.imageBox) {
+  margin: 1vw;
+  border-radius: 2vw;
+  overflow: hidden;
+  display: inline-block;
+  /* if you need ie6/7 support */
+  *display: inline;
+}
+
+:local(.image) {
+  max-width: 100%;
+  max-height: 100%;
+  vertical-align: top;
+}
