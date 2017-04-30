@@ -7,7 +7,16 @@ import StoryReader from './StoryReader';
 class App extends Component {
 
   componentWillMount() {
-    const parsed = queryString.parse(this.props.location.search);
+    this.props.loadStory({ storyId: this.props.storyId });
+  }
+
+  shouldComponentUpdate(nextProps) {
+    const nextParsed = queryString.parse(nextProps.location.search);
+    return this.props.storyId !== nextParsed.storyId;
+  }
+
+  componentWillUpdate(nextProps) {
+    const parsed = queryString.parse(nextProps.location.search);
     this.props.loadStory({ storyId: parsed.storyId });
   }
 
@@ -18,8 +27,11 @@ class App extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {}
+function mapStateToProps(state, props) {
+  const parsed = queryString.parse(props.location.search);
+  return {
+    storyId: parsed && parsed.storyId,
+  }
 }
 
 export default connect(mapStateToProps, { loadStory })(App)
