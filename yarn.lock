@@ -3479,6 +3479,10 @@ react-scroll@^1.5.0:
   dependencies:
     object-assign "^4.0.1"
 
+react-tappable@^0.8.4:
+  version "0.8.4"
+  resolved "https://registry.yarnpkg.com/react-tappable/-/react-tappable-0.8.4.tgz#c3670cf0c4eb71b2764deb749a3adac1d628af78"
+
 react-tether@^0.3.3:
   version "0.3.3"
   resolved "https://registry.yarnpkg.com/react-tether/-/react-tether-0.3.3.tgz#3818957a8385b94db71e75d085457dee6c6994f0"

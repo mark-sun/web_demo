@@ -7,6 +7,7 @@ import React, { PropTypes } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import * as ReactDOM from 'react/lib/ReactDOM';
 import Scroll from 'react-scroll';
+import Tappable from 'react-tappable';
 
 import AsideMessage from './AsideMessage';
 import { counterSelector, participantsSelector, storyMetaSelector, typingParticipantsSelector } from '../reducers/storyReducer';
@@ -19,10 +20,10 @@ import styles from './Dialogue.scss';
 class Dialogue extends React.Component {
 
   static useAnimation() {
-    const mobileDetect = new MobileDetect(window.navigator.userAgent);
-    if (window) {
-      return !(mobileDetect.os() === 'iOS');
-    }
+    // const mobileDetect = new MobileDetect(window.navigator.userAgent);
+    // if (window) {
+    //   return !(mobileDetect.os() === 'iOS');
+    // }
     return true;
   }
 
@@ -46,7 +47,6 @@ class Dialogue extends React.Component {
     if (Dialogue.useAnimation()) {
       Scroll.animateScroll.scrollToBottom();
     } else {
-      // window.scrollTo(0, document.body.scrollHeight);
       const node = ReactDOM.findDOMNode(this.placeholder);
       node.scrollIntoView({behavior: "smooth"});
     }
@@ -141,9 +141,9 @@ class Dialogue extends React.Component {
     }));
 
     return (
-      <div
+      <Tappable
+        onTap={() => renderNext()}
         className={classNames(className, styles.dialogue)}
-        onClick={() => renderNext()}
       >
         {hintSection}
         {messagesToLoad}
@@ -152,7 +152,7 @@ class Dialogue extends React.Component {
           ref={(elem) => { this.placeholder = elem; }}
           className={styles.placeholder}
         />
-      </div>
+      </Tappable>
     );
   }
 }
