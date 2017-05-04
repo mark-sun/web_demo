@@ -19,14 +19,12 @@ function Message({
     <div
       className={classNames(className, styles.messageBox)}
     >
-      {
-        (<text
-          className={styles.name}
-          style={{'color': participants.get(message.get('speaker')).get('color')}}
-        >
-          {message.get('speaker')}
-        </text>)
-      }
+    <div
+      className={styles.name}
+      style={{'color': participants.get(message.get('speaker')).get('color')}}
+    >
+      {message.get('speaker')}
+    </div>
       <div
         className={styles.messagesList}
       >
@@ -34,9 +32,9 @@ function Message({
           message.get('text') && message.get('text').map((msg, idx) => {
             return (
               <div key={idx}>
-                <text className={styles.messageText}>
+                <div className={styles.messageText}>
                   { msg }
-                </text>
+                </div>
               </div>
             );
           })

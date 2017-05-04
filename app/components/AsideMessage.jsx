@@ -20,11 +20,11 @@ export default function AsideMessage({
           text.map((msg, idx) => {
             return (
               <div key={idx}>
-                <text
+                <div
                   className={styles.messageText}
                 >
                   { msg }
-                </text>
+                </div>
               </div>
             );
           })

@@ -31,6 +31,23 @@
     },
     {
       "speaker": "姑娘",
+      "type": "TYPING",
+      "time": 2
+    },
+    {
+      "speaker": "少爷",
+      "type": "TYPING",
+      "time": 3
+    },
+    {
+      "speaker": "姑娘",
+      "text": [
+        "Nothing special. ",
+        "Wanna grab a drink? "
+      ]
+    },
+    {
+      "speaker": "少爷",
       "text": [
         "Nothing special. ",
         "Wanna grab a drink? "

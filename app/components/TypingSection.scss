@@ -1,0 +1,40 @@
+:local(.typingBox) {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  // background-color: yellow;
+  // padding: 1vw;
+  margin: 0 2vw 0;
+  font-size: 2vh;
+}
+
+:local(.name) {
+  
+}
+
+:local(.typing) {
+  font-style: italic;
+  padding-left: 0.5vw;
+}
+
+:local(.typing:after) {
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: bottom;
+  -webkit-animation: ellipsis steps(5,end) 1500ms infinite;      
+  animation: ellipsis steps(5,end) 1500ms infinite;
+  content: "\2026"; /* ascii code for the ellipsis character */
+  width: 0px;
+}
+
+@keyframes ellipsis {
+  to {
+    width: 1.25em;    
+  }
+}
+
+@-webkit-keyframes ellipsis {
+  to {
+    width: 1.25em;    
+  }
+}

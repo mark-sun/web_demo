@@ -38,11 +38,14 @@ export function blockForTyping({ speaker, time, index }) {
       index,
     })
     Promise.resolve( 
-      setTimeout(() => {dispatch({
-        type: ActionTypes.STOP_TYPING,
-        speaker,
-        index,
-      })}, timeout)
+      setTimeout(() => {
+        dispatch({
+          type: ActionTypes.STOP_TYPING,
+          speaker,
+          index,
+        });
+        dispatch(renderNext());
+      }, timeout)
     )
   };
 }

@@ -10,10 +10,10 @@ import Scroll from 'react-scroll';
 import Tappable from 'react-tappable';
 
 import AsideMessage from './AsideMessage';
-import { counterSelector, participantsSelector, storyMetaSelector, typingParticipantsSelector } from '../reducers/storyReducer';
+import { counterSelector, participantsSelector, storyMetaSelector } from '../reducers/storyReducer';
 import Message from './Message';
 import { renderNext, blockForTyping } from '../actions/storyActions';
-import TypingMessage from './TypingMessage';
+import TypingSection from './TypingSection';
 
 import styles from './Dialogue.scss';
 
@@ -28,7 +28,7 @@ class Dialogue extends React.Component {
   }
 
   static getMessagesToLoad(messagesToLoad) {
-    if (Dialogue.useAnimation()) {
+    if (false && Dialogue.useAnimation()) {
       return (<ReactCSSTransitionGroup
         transitionName="loadMessage"
         transitionAppear={true}
@@ -73,16 +73,13 @@ class Dialogue extends React.Component {
   }
 
   render() {
-
-    let { 
-      blockForTyping, 
+    let {
       counter, 
       className, 
       messages, 
       participants, 
       renderNext, 
       storyMeta,
-      typingPaticipants, 
     } = this.props;
 
     // console.log('************Dialogue', messages && messages.toJS());
@@ -117,28 +114,20 @@ class Dialogue extends React.Component {
       }
     }));
 
-    const hintSection = counter === 0 ?
+    const hintSection = (counter == 0) ?
       (
         <div className={classNames(styles.initialDisplay)}>
-          <text className={classNames(styles.description)}>
+          <div className={classNames(styles.description)}>
             {storyMeta && (storyMeta.get('introduction') || storyMeta.get('title'))}
-          </text>
+          </div>
           <br/>
-          <text className={classNames(styles.author)}>
+          <div className={classNames(styles.author)}>
             {storyMeta && '——' + storyMeta.get('author')}
-          </text>
+          </div>
           <br/>
-          <text className={classNames(styles.hint)}>（点击屏幕，继续故事）</text>
+          <div className={classNames(styles.hint)}>（点击屏幕，继续故事）</div>
         </div>
       ) : null;
-    
-    const typingSection = Dialogue.getMessagesToLoad(typingPaticipants.keySeq().toArray().map((tp, index) => {
-      return <TypingMessage 
-        key={index}
-        name={tp}
-        nameColor={participants.get(tp).get('color')}
-      />
-    }));
 
     return (
       <Tappable
@@ -147,11 +136,12 @@ class Dialogue extends React.Component {
       >
         {hintSection}
         {messagesToLoad}
-        {typingSection}
         <div
           ref={(elem) => { this.placeholder = elem; }}
           className={styles.placeholder}
-        />
+        >
+          <TypingSection />
+        </div>
       </Tappable>
     );
   }
@@ -164,14 +154,12 @@ Dialogue.propTypes = {
   participants: ImmutablePropTypes.map,
   renderNext: PropTypes.func,
   storyMeta: ImmutablePropTypes.map,
-  typingPaticipants: ImmutablePropTypes.map,
 };
 
 const selector = createStructuredSelector({
   counter: counterSelector,
   participants: participantsSelector,
   storyMeta: storyMetaSelector,
-  typingPaticipants: typingParticipantsSelector,
 });
 
 export default connect(selector, {

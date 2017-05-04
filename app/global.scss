@@ -1,7 +1,12 @@
-@import "variables";
+@import "./variables";
 body {
   font-family: 'Lato', sans-serif;
   -webkit-font-smoothing: antialiased;
   margin: 0;
   background-color: $color-background;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }

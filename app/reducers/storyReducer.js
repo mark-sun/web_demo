@@ -61,7 +61,7 @@ export default function reducer(state = defaultState, action) {
       const participants = action.story
         .get('participants')
         .reduce((map, obj) => { return map.set(obj.get('name'), obj); }, Immutable.Map({}));
-      return state//.set('counter', 5)
+      return state//.set('counter', 3)
         .set('dialogue', dialogue)
         .set('participants', participants)
         .set('storyMeta', action.story.get('storyMeta'))
