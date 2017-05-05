@@ -22,7 +22,7 @@
   ],
   "dialogue": [
     {
-      "type": "ASIDE",
+      "type": "TIME",
       "text": [
         "2017.4.4 - 10:31"
       ]
@@ -248,7 +248,7 @@
       ]
     },
     {
-      "type": "ASIDE",
+      "type": "TIME",
       "text": [
         "2017.4.5 23:59"
       ]

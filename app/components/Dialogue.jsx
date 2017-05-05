@@ -13,6 +13,7 @@ import AsideMessage from './AsideMessage';
 import { counterSelector, participantsSelector, storyMetaSelector } from '../reducers/storyReducer';
 import Message from './Message';
 import { renderNext, blockForTyping } from '../actions/storyActions';
+import TimeIndicator from './TimeIndicator';
 import TypingSection from './TypingSection';
 
 import styles from './Dialogue.scss';
@@ -20,15 +21,15 @@ import styles from './Dialogue.scss';
 class Dialogue extends React.Component {
 
   static useAnimation() {
-    // const mobileDetect = new MobileDetect(window.navigator.userAgent);
-    // if (window) {
-    //   return !(mobileDetect.os() === 'iOS');
-    // }
+    const mobileDetect = new MobileDetect(window.navigator.userAgent);
+    if (window) {
+      return !(mobileDetect.os() === 'iOS');
+    }
     return true;
   }
 
   static getMessagesToLoad(messagesToLoad) {
-    if (false && Dialogue.useAnimation()) {
+    if (Dialogue.useAnimation()) {
       return (<ReactCSSTransitionGroup
         transitionName="loadMessage"
         transitionAppear={true}
@@ -100,6 +101,13 @@ class Dialogue extends React.Component {
             text={message.get('text')}
           />
         );
+      } else if (message.get('type') === 'TIME') {
+        return (
+          <TimeIndicator
+            key={index}
+            text={message.get('text')}
+          />
+        );
       } else if (message.get('type') === 'TYPING') {
         /*
         if (typingPaticipants.get(message.get('speaker')) === index) {
@@ -114,20 +122,31 @@ class Dialogue extends React.Component {
       }
     }));
 
-    const hintSection = (counter == 0) ?
+    const hintSection = (counter == 0) &&
       (
         <div className={classNames(styles.initialDisplay)}>
-          <div className={classNames(styles.description)}>
-            {storyMeta && (storyMeta.get('introduction') || storyMeta.get('title'))}
-          </div>
+          {
+            storyMeta && <div className={classNames(styles.title)}>
+              { '「 ' + storyMeta.get('title') + ' 」' }
+            </div>
+          }
           <br/>
-          <div className={classNames(styles.author)}>
-            {storyMeta && '——' + storyMeta.get('author')}
-          </div>
+          {
+            storyMeta && <div className={classNames(styles.author)}>
+              { '——' + storyMeta.get('author') }
+            </div>
+          }
+          <br/>
+          <br/>
+          {
+            storyMeta && <div className={classNames(styles.introduction)}>
+              { storyMeta.get('introduction') }
+            </div>
+          }
           <br/>
           <div className={classNames(styles.hint)}>（点击屏幕，继续故事）</div>
         </div>
-      ) : null;
+      );
 
     return (
       <Tappable
