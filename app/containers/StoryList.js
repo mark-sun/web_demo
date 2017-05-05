@@ -25,8 +25,8 @@ class StoryList extends React.Component {
             StoryList.STORY_LIST.map((story, index) => {
               return (
                 <li key={index}>
-                  <Link to={`${match.url}${story.id}`}> {story.name} </Link>
-                  : {`${prefix}${match.url}/${story.id}`}
+                  <Link to={`${match.url}/${story.id}`}> {story.name} </Link>
+                  : {`${prefix}#${match.url}/${story.id}`}
                 </li>
               );
             })
