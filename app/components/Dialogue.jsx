@@ -10,7 +10,7 @@ import Scroll from 'react-scroll';
 import Tappable from 'react-tappable';
 
 import AsideMessage from './AsideMessage';
-import { counterSelector, participantsSelector, storyMetaSelector } from '../reducers/storyReducer';
+import { counterSelector, participantsSelector, renderedSelector, storyMetaSelector } from '../reducers/storyReducer';
 import Message from './Message';
 import { renderNext, blockForTyping } from '../actions/storyActions';
 import TimeIndicator from './TimeIndicator';
@@ -21,10 +21,10 @@ import styles from './Dialogue.scss';
 class Dialogue extends React.Component {
 
   static useAnimation() {
-    const mobileDetect = new MobileDetect(window.navigator.userAgent);
-    if (window) {
-      return !(mobileDetect.os() === 'iOS');
-    }
+    // const mobileDetect = new MobileDetect(window.navigator.userAgent);
+    // if (window) {
+    //   return !(mobileDetect.os() === 'iOS');
+    // }
     return true;
   }
 
@@ -65,7 +65,7 @@ class Dialogue extends React.Component {
 
   componentDidUpdate(prevProps) {
     let { blockForTyping, counter, messages } = this.props;
-    if (prevProps.counter != counter && messages.last().get('type') === 'TYPING') {
+    if (prevProps.counter != counter && messages.last() && messages.last().get('type') === 'TYPING') {
       const message = messages.last();
       blockForTyping({ index: messages.size-1, speaker: message.get('speaker'), time: message.get('time') })
     }
@@ -109,15 +109,6 @@ class Dialogue extends React.Component {
           />
         );
       } else if (message.get('type') === 'TYPING') {
-        /*
-        if (typingPaticipants.get(message.get('speaker')) === index) {
-          return <TypingMessage 
-            key={index}
-            name={message.get('speaker')}
-            nameColor={participants.get(message.get('speaker')).get('color')}
-          />
-        }
-        */
         return (<noscript key={index} />);
       }
     }));
@@ -177,6 +168,7 @@ Dialogue.propTypes = {
 
 const selector = createStructuredSelector({
   counter: counterSelector,
+  messages: renderedSelector,
   participants: participantsSelector,
   storyMeta: storyMetaSelector,
 });

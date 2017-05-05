@@ -1,37 +1,26 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { loadStory } from '../actions/storyActions';
-import queryString from 'query-string';
+import { HashRouter as Router, IndexRoute, Route, Switch } from 'react-router-dom';
+
+import StoryList from './StoryList';
 import StoryReader from './StoryReader';
 
 class App extends Component {
-
-  componentWillMount() {
-    this.props.loadStory({ storyId: this.props.storyId });
-  }
-
-  shouldComponentUpdate(nextProps) {
-    const nextParsed = queryString.parse(nextProps.location.search);
-    return this.props.storyId !== nextParsed.storyId;
-  }
-
-  componentWillUpdate(nextProps) {
-    const parsed = queryString.parse(nextProps.location.search);
-    this.props.loadStory({ storyId: parsed.storyId });
-  }
-
+  static NotFound = () => (
+    <div> 404 Not Found </div>
+  )
   render() {
+    // console.log('^^^^^^^^^^^^^^^^^^^^^^ App');
     return (
-      <StoryReader/>
+      <Router>
+        <Switch>
+          <Route exact path="/stories/:storyId" component={StoryReader} />
+          <Route exact path="/stories" component={StoryList} />
+          <Route component={App.NotFound} />
+        </Switch>
+      </Router>
     )
   }
 }
 
-function mapStateToProps(state, props) {
-  const parsed = queryString.parse(props.location.search);
-  return {
-    storyId: parsed && parsed.storyId,
-  }
-}
-
-export default connect(mapStateToProps, { loadStory })(App)
+export default connect(null, { })(App)
