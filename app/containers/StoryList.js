@@ -5,6 +5,9 @@ import Immutable from 'immutable';
 import React from 'react';
 import StoryReader from './StoryReader';
 
+import styles from './StoryList.scss';
+
+
 class StoryList extends React.Component {
 
   static STORY_LIST = Immutable.List([
@@ -12,6 +15,7 @@ class StoryList extends React.Component {
     { name: "思思 - part 1", id: 'story_sisi'},
     { name: "思思 - part 2", id: 'story_sisi_2'},
     { name: "正在输入", id: 'zhengzaishuru'},
+    { name: "自拍", id: 'selfie'},
   ]);
 
   render() {
@@ -32,6 +36,8 @@ class StoryList extends React.Component {
             })
           }
         </ul>
+
+        <svg className={styles.hearts} dangerouslySetInnerHTML={{__html: require('../assets/images/hearts.svg')}} />
       </div>
     );
   }

@@ -25,6 +25,11 @@
   text-align: center;
 }
 
+:local(.messages) {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
 :local(.author) {
   font-size: 2.8vh;
   font-style: italic;
@@ -58,7 +63,7 @@
 
 .loadMessage-enter.loadMessage-enter-active {
   opacity: 1;
-  -webkit-transition: opacity 500ms ease-in;
+  -webkit-transition: opacity 100ms ease-in;
 }
 
 .loadMessage-leave {
@@ -67,7 +72,7 @@
 
 .loadMessage-leave.loadMessage-leave-active {
   opacity: 0.01;
-  -webkit-transition: opacity 300ms ease-in;
+  -webkit-transition: opacity 100ms ease-in;
 }
 
 .loadMessage-appear {
@@ -76,5 +81,5 @@
 
 .loadMessage-appear.loadMessage-appear-active {
   opacity: 1;
-  -webkit-transition: opacity .5s ease-in;
+  -webkit-transition: opacity 100ms ease-in;
 }

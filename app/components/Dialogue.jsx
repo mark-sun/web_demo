@@ -19,32 +19,34 @@ import TypingSection from './TypingSection';
 import styles from './Dialogue.scss';
 
 class Dialogue extends React.Component {
-
   static useAnimation() {
-    // const mobileDetect = new MobileDetect(window.navigator.userAgent);
-    // if (window) {
-    //   return !(mobileDetect.os() === 'iOS');
-    // }
+    const mobileDetect = new MobileDetect(window.navigator.userAgent);
+    if (window) {
+      return !(mobileDetect.os() === 'iOS');
+    }
     return true;
   }
 
-  static getMessagesToLoad(messagesToLoad) {
+  static getMessagesToLoad(messagesToLoad, placeholder) {
     if (Dialogue.useAnimation()) {
       return (<ReactCSSTransitionGroup
+        className={styles.messages}
         transitionName="loadMessage"
         transitionAppear={true}
-        transitionAppearTimeout={500}
-        transitionEnterTimeout={500}
-        transitionLeaveTimeout={300}
+        transitionAppearTimeout={100}
+        transitionEnterTimeout={100}
+        transitionLeaveTimeout={100}
       >
+        {placeholder}
         {messagesToLoad}
       </ReactCSSTransitionGroup>);
     } else {
-      return messagesToLoad;
+      return (<div className={styles.messages}>{placeholder} {messagesToLoad} </div>);
     }
   }
 
   scrollToBottom = () => {
+    console.log('************* STILL SCROLLING');
     if (Dialogue.useAnimation()) {
       Scroll.animateScroll.scrollToBottom();
     } else {
@@ -59,7 +61,6 @@ class Dialogue extends React.Component {
       const message = messages.last();
       blockForTyping({ index: messages.size-1, speaker: message.get('speaker'), time: message.get('time') })
     }
-
     this.scrollToBottom();
   }
 
@@ -85,6 +86,12 @@ class Dialogue extends React.Component {
 
     // console.log('************Dialogue', messages && messages.toJS());
     // console.log('************Dialogue participants=', participants && participants.toJS());
+    const placeholder = (<div
+          ref={(elem) => { this.placeholder = elem; }}
+          className={styles.placeholder}
+        >
+          <TypingSection />
+    </div>);
 
     const messagesToLoad = messages && Dialogue.getMessagesToLoad(messages.map((message, index) => {
       if (!message.get('type') || message.get('type') === 'MESSAGE') {
@@ -111,7 +118,8 @@ class Dialogue extends React.Component {
       } else if (message.get('type') === 'TYPING') {
         return (<noscript key={index} />);
       }
-    }));
+    }).reverse() /* REVERSE it because of column-reverse */
+    , placeholder);
 
     const hintSection = (counter == 0) &&
       (
@@ -146,12 +154,6 @@ class Dialogue extends React.Component {
       >
         {hintSection}
         {messagesToLoad}
-        <div
-          ref={(elem) => { this.placeholder = elem; }}
-          className={styles.placeholder}
-        >
-          <TypingSection />
-        </div>
       </Tappable>
     );
   }

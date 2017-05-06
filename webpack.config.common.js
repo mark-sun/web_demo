@@ -31,7 +31,7 @@ module.exports = {
     ]
   },
   fileLoader: {
-    test: /\.(jpg|jpeg|svg|png)$/,
+    test: /\.(jpg|jpeg|png)$/,
     loader: 'file-loader'
   },
   svgLoader: {

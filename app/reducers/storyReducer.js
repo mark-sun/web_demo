@@ -10,7 +10,7 @@ export const loadingSelector = state => state.get('loading');
 export const participantsSelector = state => state.get('participants');
 export const storyMetaSelector = state => state.get('storyMeta');
 export const storyNameSelector = state => storyMetaSelector(state).get('storyName');
-export const typingParticipantsSelector = state => state.get('typingParticipants').sort((i1, i2) => i1-i2);
+export const typingParticipantsSelector = state => state.get('typingParticipants').sort();
 
 export const renderedSelector = createSelector(
   dialogueSelector,
