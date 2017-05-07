@@ -7,12 +7,12 @@
     {
       "name": "宝贝丹",
       "type": "speaker",
-      "color": "#b541f4"
+      "color": "purple"
     },
     {
       "name": "王浩",
       "type": "speaker",
-      "color": "#4286f4"
+      "color": "green"
     }
   ],
   "dialogue": [

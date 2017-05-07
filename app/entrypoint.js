@@ -2,7 +2,7 @@ import 'babel-polyfill';
 import './reset.scss';
 import './global.scss';
 
-import App from './containers/App';
+import App from './components/App';
 import { Provider } from 'react-redux';
 import React from 'react';
 import ReactDOM from 'react-dom';

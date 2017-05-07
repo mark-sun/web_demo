@@ -1,3 +1,5 @@
+@import '../colors';
+
 :local(.typingBox) {
   display: flex;
   flex-direction: row;
@@ -9,7 +11,24 @@
 }
 
 :local(.name) {
-  
+  &:local(.name--red) {
+    color: $color-red-name;
+  }
+  &:local(.name--blue) {
+    color: $color-blue-name;
+  }
+  &:local(.name--green) {
+    color: $color-green-name;
+  }
+  &:local(.name--orange) {
+    color: $color-orange-name;
+  }
+  &:local(.name--purple) {
+    color: $color-purple-name;
+  }
+  &:local(.name--grey) {
+    color: $color-grey-name;
+  }
 }
 
 :local(.typing) {

@@ -1,0 +1,10 @@
+:local(.hearts) {
+  fill: red;
+}
+
+:local(.storyListContainer) {
+  display: flex;
+  flex-direction: column;
+  padding: 1vw;
+  font-size: 3vh;
+}

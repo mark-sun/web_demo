@@ -5,23 +5,33 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { List } from 'immutable';
 import React, { PropTypes } from 'react';
 
-import { participantsSelector } from '../reducers/storyReducer';
+import { loadingSelector, participantsSelector } from '../reducers/storyReducer';
 import StoryWebUtil from '../utils/StoryWebUtil';
 import styles from './Message.scss';
 
 function Message({
-  className,
+  loading,
   message,
   participants,
 }) {
+  if (loading) {
+    return ( <noscript/> );
+  }
   // console.log('^^^^^^^^^^^^^', message.toJS());
+  const participant = participants.get(message.get('speaker'));
+  // console.log('^^^^^^^^^^^^^', participant.toJS());
   return (
     <div
-      className={classNames(className, styles.messageBox)}
+      className={classNames( 
+        styles.messageBox,
+        styles[`messageBox--${participant.get('color')}`],
+      )}
     >
     <div
-      className={styles.name}
-      style={{'color': participants.get(message.get('speaker')).get('color')}}
+      className={classNames(
+        styles.name,
+        styles[`name--${participant.get('color')}`],
+      )}
     >
       {message.get('speaker')}
     </div>
@@ -54,11 +64,12 @@ function Message({
 }
 
 Message.propTypes = {
-  className: PropTypes.string,
+  loading: PropTypes.bool,
   participants: ImmutablePropTypes.map,
 };
 
 const selector = createStructuredSelector({
+  loading: loadingSelector,
   participants: participantsSelector,
 });
 

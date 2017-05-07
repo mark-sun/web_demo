@@ -1,10 +1,10 @@
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
-import Dialogue from '../components/Dialogue';
+import Dialogue from './Dialogue';
 import { loadingSelector } from '../reducers/storyReducer';
 import { loadStory } from '../actions/storyActions';
 import React from 'react';
-import Spinner from '../components/Spinner';
+import Spinner from './Spinner';
 
 import styles from './StoryReader.scss';
 
@@ -25,15 +25,7 @@ class StoryReader extends React.Component {
   }
 
   render() {
-    let { loading, dialogue } = this.props;
-
-    if (loading) {
-      return (
-        <div className={styles.loading}>
-          <Spinner size='large'/>
-        </div>
-      )
-    }
+    const { loading, dialogue } = this.props;
 
     return (
       <div

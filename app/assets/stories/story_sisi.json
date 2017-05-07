@@ -8,16 +8,11 @@
     {
       "name": "思思",
       "type": "speaker",
-      "color": "pink"
+      "color": "orange"
     },
     {
       "name": "吴成哲",
       "type": "speaker",
-      "color": "blue"
-    },
-    {
-      "name": "旁白",
-      "type": "info",
       "color": "green"
     }
   ],

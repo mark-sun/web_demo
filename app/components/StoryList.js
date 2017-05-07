@@ -22,7 +22,7 @@ class StoryList extends React.Component {
     let { match } = this.props;
     const prefix = location.href && location.href.substring(0, location.href.indexOf('#'));
     return (
-      <div>
+      <div className={styles.storyListContainer}>
         <p>Celine, 请不要分享这个list的链接。分享每个故事的链接。</p>
         <ul>
           { 

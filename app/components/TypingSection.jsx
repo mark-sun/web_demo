@@ -23,9 +23,12 @@ function TypingSection({
     >
       {
         typingPaticipants.keySeq().toArray().map((tpName, index) => {
-          return (<div key={index} className={styles.name}>
+          return (<div key={index} className={styles.names}>
             { index != 0 && <text style={{'paddingRight': 0.5+'vw' }}>,</text> }
-            <text style={{'color': participants.get(tpName).get('color')}}>
+            <text className={classNames(
+              styles.name, 
+              styles[`name--${participants.get(tpName).get('color')}`]
+            )}>
               { tpName }
             </text>
           </div>);

@@ -3,11 +3,11 @@
   "participants" : [
     {
       "name": "少爷",
-      "color": "green"
+      "color": "grey"
     },
     {
       "name": "姑娘",
-      "color": "red"
+      "color": "purple"
     }
   ],
   "dialogue": [

@@ -7,10 +7,11 @@ import React, { PropTypes } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import * as ReactDOM from 'react/lib/ReactDOM';
 import Scroll from 'react-scroll';
+import Spinner from './Spinner';
 import Tappable from 'react-tappable';
 
 import AsideMessage from './AsideMessage';
-import { counterSelector, participantsSelector, renderedSelector, storyMetaSelector } from '../reducers/storyReducer';
+import { counterSelector, loadingSelector, participantsSelector, renderedSelector, storyMetaSelector } from '../reducers/storyReducer';
 import Message from './Message';
 import { renderNext, blockForTyping } from '../actions/storyActions';
 import TimeIndicator from './TimeIndicator';
@@ -20,10 +21,10 @@ import styles from './Dialogue.scss';
 
 class Dialogue extends React.Component {
   static useAnimation() {
-    // const mobileDetect = new MobileDetect(window.navigator.userAgent);
-    // if (window) {
-    //   return !(mobileDetect.os() === 'iOS');
-    // }
+    const mobileDetect = new MobileDetect(window.navigator.userAgent);
+    if (window) {
+      return !(mobileDetect.os() === 'iOS');
+    }
     return true;
   }
 
@@ -46,7 +47,7 @@ class Dialogue extends React.Component {
   }
 
   scrollToBottom = () => {
-    console.log('************* STILL SCROLLING');
+    // console.log('************* STILL SCROLLING');
     if (Dialogue.useAnimation()) {
       Scroll.animateScroll.scrollToBottom();
     } else {
@@ -75,14 +76,23 @@ class Dialogue extends React.Component {
   }
 
   render() {
-    let {
+    const {
       counter, 
-      className, 
-      messages, 
+      className,
+      loading, 
+      messages,
       participants, 
       renderNext, 
       storyMeta,
     } = this.props;
+
+    if (loading) {
+      return (
+        <div className={styles.loading}>
+          <Spinner size='large'/>
+        </div>
+      )
+    }
 
     // console.log('************Dialogue', messages && messages.toJS());
     // console.log('************Dialogue participants=', participants && participants.toJS());
@@ -162,6 +172,7 @@ class Dialogue extends React.Component {
 Dialogue.propTypes = {
   blockForTyping: PropTypes.func,
   counter: PropTypes.number,
+  loading: PropTypes.bool,
   messages: ImmutablePropTypes.list,
   participants: ImmutablePropTypes.map,
   renderNext: PropTypes.func,
@@ -170,6 +181,7 @@ Dialogue.propTypes = {
 
 const selector = createStructuredSelector({
   counter: counterSelector,
+  loading: loadingSelector,
   messages: renderedSelector,
   participants: participantsSelector,
   storyMeta: storyMetaSelector,

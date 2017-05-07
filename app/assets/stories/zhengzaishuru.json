@@ -8,17 +8,17 @@
     {
       "name": "C",
       "type": "speaker",
-      "color": "#2c75ea"
+      "color": "blue"
     },
     {
       "name": "未知号码",
       "type": "speaker",
-      "color": "#39b721"
+      "color": "orange"
     },
     {
       "name": "未知号码2",
       "type": "speaker",
-      "color": "#e83b25"
+      "color": "grey"
     }
   ],
   "dialogue": [

@@ -1,4 +1,12 @@
-@import "../variables";
+@import "../colors";
+
+:local(.loading) {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
 :local(.dialogue) {
   display: flex;

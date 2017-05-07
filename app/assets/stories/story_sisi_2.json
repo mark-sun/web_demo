@@ -7,17 +7,17 @@
     {
       "name": "思思",
       "type": "speaker",
-      "color": "pink"
+      "color": "orange"
     },
     {
       "name": "吴成哲",
       "type": "speaker",
-      "color": "blue"
+      "color": "green"
     },
     {
       "name": "妈",
       "type": "speaker",
-      "color": "green"
+      "color": "blue"
     }
   ],
   "dialogue": [

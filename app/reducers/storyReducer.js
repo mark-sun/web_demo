@@ -33,6 +33,8 @@ const defaultState = Immutable.Map({
   typingParticipants: Immutable.Map({}),
 });
 
+const AVAILABLE_COLORS = Immutable.List(['red', 'blue', 'green', 'purple', 'orange', 'grey',]);
+
 export default function reducer(state = defaultState, action) {
   switch (action.type) {
     case ActionType.BLOCK_FOR_TYPING: {
@@ -60,7 +62,13 @@ export default function reducer(state = defaultState, action) {
       const dialogue = action.story.get('dialogue');
       const participants = action.story
         .get('participants')
-        .reduce((map, obj) => { return map.set(obj.get('name'), obj); }, Immutable.Map({}));
+        .reduce(
+          (map, obj, i) => {
+            const participant = (AVAILABLE_COLORS.indexOf(obj.get('color')) == -1 ? obj.set('color', AVAILABLE_COLORS.get(i % AVAILABLE_COLORS.size)) : obj)
+            return map.set(obj.get('name'), participant); 
+          }, 
+          Immutable.Map({})
+        );
       return state.set('counter', 0)
         .set('dialogue', dialogue)
         .set('participants', participants)
