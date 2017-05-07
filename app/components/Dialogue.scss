@@ -67,6 +67,7 @@
 
 .loadMessage-enter.loadMessage-enter-active {
   opacity: 1;
+  transition: opacity 100ms ease-in;
   -webkit-transition: opacity 100ms ease-in;
 }
 
@@ -76,6 +77,7 @@
 
 .loadMessage-leave.loadMessage-leave-active {
   opacity: 0.01;
+  transition: opacity 100ms ease-in;
   -webkit-transition: opacity 100ms ease-in;
 }
 
@@ -85,5 +87,6 @@
 
 .loadMessage-appear.loadMessage-appear-active {
   opacity: 1;
+  transition: opacity 100ms ease-in;
   -webkit-transition: opacity 100ms ease-in;
 }
