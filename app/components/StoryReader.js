@@ -4,7 +4,6 @@ import Dialogue from './Dialogue';
 import { loadingSelector } from '../reducers/storyReducer';
 import { loadStory } from '../actions/storyActions';
 import React from 'react';
-import Spinner from './Spinner';
 
 import styles from './StoryReader.scss';
 
@@ -26,7 +25,6 @@ class StoryReader extends React.Component {
 
   render() {
     const { loading, dialogue } = this.props;
-
     return (
       <div
         className={styles.storyReaderContainer}

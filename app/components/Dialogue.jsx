@@ -52,7 +52,7 @@ class Dialogue extends React.Component {
       Scroll.animateScroll.scrollToBottom();
     } else {
       const node = ReactDOM.findDOMNode(this.placeholder);
-      node.scrollIntoView({behavior: "smooth"});
+      node && node.scrollIntoView({behavior: "smooth"});
     }
   };
 
@@ -89,7 +89,7 @@ class Dialogue extends React.Component {
     if (loading) {
       return (
         <div className={styles.loading}>
-          <Spinner size='large'/>
+          <Spinner size='large' alignment="center" />
         </div>
       )
     }
