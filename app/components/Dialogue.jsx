@@ -5,7 +5,6 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import MobileDetect from 'mobile-detect';
 import React, { PropTypes } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import * as ReactDOM from 'react/lib/ReactDOM';
 import Scroll from 'react-scroll';
 import Spinner from './Spinner';
 import Tappable from 'react-tappable';
