@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { List } from 'immutable';
-import React, { PropTypes } from 'react';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 import { loadingSelector, participantsSelector } from '../reducers/storyReducer';
 import StoryWebUtil from '../utils/StoryWebUtil';

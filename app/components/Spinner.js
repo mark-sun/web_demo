@@ -1,13 +1,14 @@
 import classNames from 'classnames';
+import PropTypes from 'prop-types';
 import React from 'react';
 import styles from './Spinner.scss';
 
 class Spinner extends React.Component {
   static propTypes = {
-    alignment: React.PropTypes.string,
-    className: React.PropTypes.string,
-    color: React.PropTypes.string,
-    size: React.PropTypes.string,
+    alignment: PropTypes.string,
+    className: PropTypes.string,
+    color: PropTypes.string,
+    size: PropTypes.string,
   };
   
   static defaultProps = {
