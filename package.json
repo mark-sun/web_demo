@@ -30,6 +30,7 @@
     "babel-polyfill": "^6.5.0",
     "bluebird": "^3.5.0",
     "classnames": "^2.2.0",
+    "emoji-datasource-apple": "^3.0.0",
     "emoji-js": "^3.2.2",
     "file-loader": "^0.11.1",
     "immutable": "^3.7.6",
