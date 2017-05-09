@@ -1522,9 +1522,15 @@ electron-to-chromium@^1.2.7:
   version "1.3.3"
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.3.tgz#651eb63fe89f39db70ffc8dbd5d9b66958bc6a0e"
 
-emojione@^3.0.3:
-  version "3.0.3"
-  resolved "https://registry.yarnpkg.com/emojione/-/emojione-3.0.3.tgz#7b4c61210bf6949f0ac16803889ea1abf2b285ea"
+emoji-datasource@3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/emoji-datasource/-/emoji-datasource-3.0.0.tgz#3c46c5aa4c39bb7a0c8e6877ae02cc94dbc1b12f"
+
+emoji-js@^3.2.2:
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/emoji-js/-/emoji-js-3.2.2.tgz#9f371f4bbd04f18dce08429925620b66f49af6a5"
+  dependencies:
+    emoji-datasource "3.0.0"
 
 emojis-list@^2.0.0:
   version "2.1.0"

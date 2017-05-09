@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+import emoji from './Emoji';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { List } from 'immutable';
 import PropTypes from 'prop-types';
@@ -44,7 +45,7 @@ function Message({
             return (
               <div key={idx}>
                 <div className={styles.messageText}>
-                  { msg }
+                  { emoji.replace_colons(msg) }
                 </div>
               </div>
             );

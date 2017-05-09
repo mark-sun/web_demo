@@ -11,7 +11,7 @@ const logger = createLogger({
 
 const composeEnhancers = (process.env.NODE_ENV === 'development' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
 
-export default createStore(
+let store = createStore(
   reducer,
   undefined,
   composeEnhancers(applyMiddleware(
@@ -19,3 +19,9 @@ export default createStore(
     logger
   ))
 );
+
+if (window) {
+  window.store = store;
+}
+
+export default store;

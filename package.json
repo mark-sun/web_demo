@@ -30,7 +30,7 @@
     "babel-polyfill": "^6.5.0",
     "bluebird": "^3.5.0",
     "classnames": "^2.2.0",
-    "emojione": "^3.0.3",
+    "emoji-js": "^3.2.2",
     "file-loader": "^0.11.1",
     "immutable": "^3.7.6",
     "json-loader": "^0.5.4",
