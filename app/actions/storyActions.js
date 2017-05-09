@@ -1,6 +1,6 @@
 import ActionTypes from '../constants/ActionTypes';
 import Promise from 'bluebird';
-import StoryWebUtil from '../utils/StoryWebUtil';
+import WebUtil from '../utils/WebUtil';
 
 export function renderNext() {
   return {
@@ -14,7 +14,7 @@ export function loadStory({ storyId }) {
       type: ActionTypes.LOAD_STORY,
     });
     Promise.resolve(
-      StoryWebUtil.getStoryJson({storyId})
+      WebUtil.getStoryJson({storyId})
     ).then(story => {
       dispatch({
         type: ActionTypes.LOAD_STORY_SUCCESS,

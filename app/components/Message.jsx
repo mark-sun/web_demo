@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import { loadingSelector, participantsSelector } from '../reducers/storyReducer';
-import StoryWebUtil from '../utils/StoryWebUtil';
+import WebUtil from '../utils/WebUtil';
 import styles from './Message.scss';
 
 function Message({
@@ -56,7 +56,7 @@ function Message({
           <div className={styles.imageBox}>
             <img 
               className={styles.image}
-              src={StoryWebUtil.getImageUrl(message.get('image'))}
+              src={WebUtil.getImageUrl(message.get('image'))}
             />
           </div>
         }
