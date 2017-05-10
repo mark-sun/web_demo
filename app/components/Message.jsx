@@ -46,8 +46,9 @@ function Message({
               <div 
                 className={styles.messageText}
                 key={idx} 
-                dangerouslySetInnerHTML={{__html: emoji.replace_colons(msg) }} 
-              />  
+              >
+                {emoji.replace_colons(msg)}}
+              </div>
             );
           })
         }
