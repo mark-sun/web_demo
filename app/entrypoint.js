@@ -1,4 +1,5 @@
 import 'babel-polyfill';
+import './components/Emoji.scss';
 import './reset.scss';
 import './global.scss';
 
