@@ -43,20 +43,11 @@ function Message({
         {
           message.get('text') && message.get('text').map((msg, idx) => {
             return (
-              
-
               <div 
                 className={styles.messageText}
                 key={idx} 
                 dangerouslySetInnerHTML={{__html: emoji.replace_colons(msg)}}
-              >
-              {/*<div 
-                className={styles.messageText}
-                key={idx}
-              >
-                { emoji.replace_colons(msg)}*/}
-              </div>
-              
+              />
             );
           })
         }
