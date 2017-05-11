@@ -1,6 +1,7 @@
 # IntelliJ
 *.iml
 .idea
+.vscode
 
 # Node
 *.log

@@ -1,6 +1,17 @@
 {
-  "storyName": "少爷和姑娘",
-  "participants" : [
+  "storyMeta": {
+    "title": "少爷和姑娘",
+    "author": "少姑",
+    "introduction": [
+      "第一行介绍",
+      "第二行介绍"
+    ],
+    "statement": [
+      "(本故事基于真实历史事件，",
+      "对话内容皆属虚构。)"
+    ]
+  },
+  "participants": [
     {
       "name": "少爷",
       "color": "grey"

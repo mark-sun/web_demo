@@ -2,7 +2,7 @@
   "storyMeta": {
     "title": "思思&成哲",
     "author": "阿狄",
-    "introduction": "我想写一个每个人都能读懂的故事，\n献给我们的青春。"
+    "introduction": ["我想写一个每个人都能读懂的故事，", "献给我们的青春。"]
   },
   "participants": [
     {

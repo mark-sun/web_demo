@@ -16,6 +16,7 @@ class StoryList extends React.Component {
     { name: "思思 - part 2", id: 'story_sisi_2'},
     { name: "正在输入", id: 'zhengzaishuru'},
     { name: "自拍", id: 'selfie'},
+    { name: "爱德华八世退位宪政危机", id: 'abdication'},
   ]);
 
   render() {

@@ -45,6 +45,13 @@
   text-align: left;
 }
 
+:local(.statement) {
+  font-size: 2vh;
+  max-width: 85%;
+  text-align: center;
+  font-style: italic;
+}
+
 :local(.hint) {
   font-size: 2vh;
   font-style: italic;

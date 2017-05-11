@@ -149,8 +149,18 @@ class Dialogue extends React.Component {
           <br/>
           <br/>
           {
-            storyMeta && <div className={classNames(styles.introduction)}>
-              { storyMeta.get('introduction') }
+            storyMeta && storyMeta.get('introduction') && <div className={classNames(styles.introduction)}>
+              { storyMeta.get('introduction').map((intro, index) => {
+                return (<div key={index}> {intro} </div>);
+              }) }
+            </div>
+          }
+          <br/>
+          {
+            storyMeta && storyMeta.get('statement') && <div className={classNames(styles.statement)}>
+              { storyMeta.get('statement').map((intro, index) => {
+                return (<div key={index}> {intro} </div>);
+              }) }
             </div>
           }
           <br/>

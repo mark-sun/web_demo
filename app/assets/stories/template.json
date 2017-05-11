@@ -1,8 +1,15 @@
 {
-	"storyMeta": {
+  "storyMeta": {
     "title": "",
     "author": "",
-    "introduction": ""
+    "introduction": [
+      "",
+      ""
+    ],
+    "statement": [
+      "(本故事基于真实历史事件，",
+      "对话内容皆属虚构。)"
+    ]
   },
   "participants": [
     {
@@ -16,5 +23,5 @@
       "color": "red blue green purple orange grey"
     }
   ],
-	"dialogue":[]
+  "dialogue": []
 }
