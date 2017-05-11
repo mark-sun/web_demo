@@ -1,15 +1,11 @@
 import EmojiConvertor from 'emoji-js';
 import WebUtil from '../utils/WebUtil';
 
-const emoji = new EmojiConvertor();
+const EMOJI_DATA_REPO_URL = '//raw.githubusercontent.com/mark-sun/emoji-data-repo/master/'
 
-if (process.env.NODE_ENV === 'development') {
-    emoji.img_sets.apple.path = '/emoji-apple-64/';
-    emoji.img_sets.apple.sheet = '/emoji-apple-sheet-64.png';
-} else {
-    emoji.img_sets.apple.path = WebUtil.ASSET_PREFIX + '/images/emoji-apple-64/';
-    emoji.img_sets.apple.sheet = WebUtil.ASSET_PREFIX + '/images/emoji-apple-sheet-64.png';
-}
+const emoji = new EmojiConvertor();
+emoji.img_sets.apple.path = EMOJI_DATA_REPO_URL + 'emoji-apple-64/';
+emoji.img_sets.apple.sheet = EMOJI_DATA_REPO_URL + 'emoji-apple-sheet-64.png';
 
 emoji.include_title = true;
 export default emoji;
