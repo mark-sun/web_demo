@@ -14,8 +14,8 @@ class App extends Component {
     return (
       <Router>
         <Switch>
-          <Route exact path="/stories/:storyId" component={StoryReader} />
-          <Route exact path="/stories" component={StoryList} />
+          <Route exact path="/gushi/:storyId" component={StoryReader} />
+          <Route exact path="/gushi" component={StoryList} />
           <Route component={App.NotFound} />
         </Switch>
       </Router>
