@@ -22,7 +22,7 @@ class StoryAnalytics extends React.Component {
                     .reduce((ret, cur, index) => (ret + '\n' + cur), "click#,message#,time");
     const stats = title + ' @' + currentTime + '\n' + clickStats;
 
-    const mailToLink = `mailto:marksun1988@gmail.com?cc=celinedi@gmail.com&sbject=${title + ' @' + currentTime}&body=${stats.replace(/\n/g, '%0A')}`;
+    const mailToLink = `mailto:marksun1988@gmail.com?cc=celinedi@gmail.com&subject=${title + ' @' + currentTime}&body=${stats.replace(/\n/g, '%0A')}`;
     return (
       <div className={styles.storyAnalyticsContainer}>
         <textarea
@@ -33,7 +33,7 @@ class StoryAnalytics extends React.Component {
         />
         <CopyToClipboard text={stats}
           onCopy={() => this.setState({copied: true})}>
-          <button className={styles.copyButton} >Copy to clipboard with button</button>
+          <button className={styles.copyButton} >Copy to clipboard</button>
         </CopyToClipboard>
         <button
           className={styles.copyButton}
