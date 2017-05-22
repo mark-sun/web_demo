@@ -27,7 +27,7 @@ export const renderedSelector = createSelector(
 const defaultState = Immutable.Map({
   counter: 0,
   dialogue: Immutable.List([]),
-  loading: false,
+  loading: true,
   participants: Immutable.Map({}),
   storyMeta: Immutable.Map({}),
   typingParticipants: Immutable.Map({}),

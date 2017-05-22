@@ -21,6 +21,7 @@ import TypingSection from './TypingSection';
 import styles from './Dialogue.scss';
 
 class Dialogue extends React.Component {
+  
   static useAnimation() {
     const mobileDetect = new MobileDetect(window.navigator.userAgent);
     if (window) {
