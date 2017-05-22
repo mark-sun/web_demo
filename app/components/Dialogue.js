@@ -104,7 +104,6 @@ class Dialogue extends React.Component {
           className={styles.placeholder}
         >
           <TypingSection />
-          <AnalyticsLink />
     </div>);
 
     const messagesToLoad = messages && Dialogue.getMessagesToLoad(messages.map((message, index) => {
@@ -172,13 +171,16 @@ class Dialogue extends React.Component {
       );
 
     return (
-      <Tappable
-        onTap={() => renderNext()}
-        className={classNames(className, styles.dialogue)}
-      >
-        {hintSection}
-        {messagesToLoad}
-      </Tappable>
+      <div className={classNames(className)}>
+        <Tappable
+          onTap={() => renderNext()}
+          className={classNames(className, styles.dialogue)}
+        >
+          {hintSection}
+          {messagesToLoad}
+        </Tappable>
+        <AnalyticsLink />
+      </div>
     );
   }
 }
