@@ -2,6 +2,7 @@ import ActionType from '../constants/ActionTypes';
 import Immutable from 'immutable';
 import { createSelector } from 'reselect';
 
+export const clicksSelector = state => state.get('clicks');
 export const counterSelector = state => state.get('counter');
 export const dialogueSelector = state => {
   return state.get('dialogue');
@@ -25,6 +26,7 @@ export const renderedSelector = createSelector(
 );
 
 const defaultState = Immutable.Map({
+  clicks: Immutable.List([]),
   counter: 0,
   dialogue: Immutable.List([]),
   loading: true,
@@ -45,13 +47,29 @@ export default function reducer(state = defaultState, action) {
 
     case ActionType.CLICK_NEXT_BUTTON: {
       if (dialogueSelector(state).size <= counterSelector(state)) {
-        return state;
+        return state.update('clicks', clicks => clicks.push(
+          {
+            counter: state.get('counter'),
+            time: Date.now(),
+          }
+        ));
       }
       const nextMessage = dialogueSelector(state).get(counterSelector(state));
       if (typingParticipantsSelector(state).has(nextMessage.get('speaker'))) {
-        return state;
+        return state.update('clicks', clicks => clicks.push(
+          {
+            counter: state.get('counter'),
+            time: Date.now(),
+          }
+        ));
       }
-      return state.update('counter', counter => counter+1);
+      return state.update('counter', counter => counter+1)
+        .update('clicks', clicks => clicks.push(
+          {
+            counter: state.get('counter')+1,
+            time: Date.now(),
+          }
+        ));
     }
 
     case ActionType.LOAD_STORY: {
@@ -69,7 +87,8 @@ export default function reducer(state = defaultState, action) {
           }, 
           Immutable.Map({})
         );
-      return state.set('counter', 0)
+      return state.set('clicks', Immutable.List([]))
+        .set('counter', 0)
         .set('dialogue', dialogue)
         .set('participants', participants)
         .set('storyMeta', action.story.get('storyMeta'))

@@ -11,6 +11,7 @@ import Scroll from 'react-scroll';
 import Spinner from './Spinner';
 import Tappable from 'react-tappable';
 
+import AnalyticsLink from './AnalyticsLink';
 import AsideMessage from './AsideMessage';
 import { counterSelector, loadingSelector, participantsSelector, renderedSelector, storyMetaSelector } from '../reducers/storyReducer';
 import Message from './Message';
@@ -103,6 +104,7 @@ class Dialogue extends React.Component {
           className={styles.placeholder}
         >
           <TypingSection />
+          <AnalyticsLink />
     </div>);
 
     const messagesToLoad = messages && Dialogue.getMessagesToLoad(messages.map((message, index) => {

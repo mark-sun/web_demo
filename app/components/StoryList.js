@@ -1,9 +1,7 @@
 import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
 import { Link, Route } from 'react-router-dom';
 import Immutable from 'immutable';
 import React from 'react';
-import StoryReader from './StoryReader';
 
 import styles from './StoryList.scss';
 
