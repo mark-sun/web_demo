@@ -173,7 +173,7 @@ class Dialogue extends React.Component {
     return (
       <div className={classNames(className)}>
         <Tappable
-          onTap={() => renderNext()}
+          onTap={() => renderNext('tap')}
           className={classNames(className, styles.dialogue)}
         >
           {hintSection}

@@ -49,8 +49,9 @@ export default function reducer(state = defaultState, action) {
       if (dialogueSelector(state).size <= counterSelector(state)) {
         return state.update('clicks', clicks => clicks.push(
           {
-            counter: state.get('counter'),
+            lastIndex: state.get('counter')-1,
             time: Date.now(),
+            source: action.source,
           }
         ));
       }
@@ -58,16 +59,18 @@ export default function reducer(state = defaultState, action) {
       if (typingParticipantsSelector(state).has(nextMessage.get('speaker'))) {
         return state.update('clicks', clicks => clicks.push(
           {
-            counter: state.get('counter'),
+            lastIndex: state.get('counter')-1,
             time: Date.now(),
+            source: action.source,
           }
         ));
       }
       return state.update('counter', counter => counter+1)
         .update('clicks', clicks => clicks.push(
           {
-            counter: state.get('counter')+1,
+            lastIndex: state.get('counter'),
             time: Date.now(),
+            source: action.source,
           }
         ));
     }
@@ -77,7 +80,7 @@ export default function reducer(state = defaultState, action) {
     }
 
     case ActionType.LOAD_STORY_SUCCESS: {
-      const dialogue = action.story.get('dialogue');
+      const dialogue = action.story.get('dialogue').map((message, index) => message.get('type')? message : message.set('type', 'MESSAGE'));
       const participants = action.story
         .get('participants')
         .reduce(

@@ -2,9 +2,10 @@ import ActionTypes from '../constants/ActionTypes';
 import Promise from 'bluebird';
 import WebUtil from '../utils/WebUtil';
 
-export function renderNext() {
+export function renderNext(source) {
   return {
     type: ActionTypes.CLICK_NEXT_BUTTON,
+    source,
   };
 }
 
@@ -44,7 +45,7 @@ export function blockForTyping({ speaker, time, index }) {
           speaker,
           index,
         });
-        dispatch(renderNext());
+        dispatch(renderNext('auto'));
       }, timeout)
     )
   };
