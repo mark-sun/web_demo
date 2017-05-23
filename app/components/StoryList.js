@@ -16,6 +16,7 @@ class StoryList extends React.Component {
     { name: "爱德华八世退位宪政危机", id: 'abdication'},
     { name: "正在输入-old_version", id: 'zhengzaishuru0504'},
     { name: "正在输入", id: 'zhengzaishuru0517'},
+    { name: "回家路上(kd)", id: 'huijialushang'},
   ]);
 
   render() {
