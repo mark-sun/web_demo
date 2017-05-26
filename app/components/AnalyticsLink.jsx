@@ -20,7 +20,7 @@ function AnalyticsLink({
   }
   return (
     <div>
-      <Link to={`${match.url}/stat`}> 进入数据分析 </Link>
+      <Link to={`${match.url}/stat`}> 请进入数据分析 </Link>
     </div>
   );
 }

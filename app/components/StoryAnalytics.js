@@ -29,7 +29,10 @@ class StoryAnalytics extends React.Component {
   countWord(message) {
     let wordCount = 0;
     if (message.get('text')) {
-      message.get('text').map((msg, index) => wordCount+=msg.match(StoryAnalytics.WORD_REGEX).length)
+      message.get('text').map((msg, index) => {
+        let splits = msg.match(StoryAnalytics.WORD_REGEX);
+        splits && splits.length && (wordCount+=splits.length);
+      })
     }
     return wordCount;
   }
@@ -77,7 +80,7 @@ class StoryAnalytics extends React.Component {
         />
         <CopyToClipboard text={analyticsContent}
           onCopy={() => this.setState({copied: true})}>
-          <button className={styles.copyButton}>Copy to clipboard</button>
+          <button className={styles.copyButton}>复制</button>
         </CopyToClipboard>
         <button
           className={styles.copyButton}
@@ -85,7 +88,7 @@ class StoryAnalytics extends React.Component {
             window.location.href=mailToLink;
           }}
         >
-          Email the result
+          Email结果
         </button>
       </div>
     );
