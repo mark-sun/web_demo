@@ -25,6 +25,12 @@ class StoryList extends React.Component {
     if (process.env.NODE_ENV === 'gh') {
       prefix = prefix + '/#';
     } 
+
+    let matchPath = match.url;
+    if (!matchPath.endsWith('/')) {
+      matchPath = matchPath + '/';
+    }
+
     return (
       <div className={styles.storyListContainer}>
         <p>Celine, 请不要分享这个list的链接。分享每个故事的链接。</p>
@@ -33,8 +39,8 @@ class StoryList extends React.Component {
             StoryList.STORY_LIST.map((story, index) => {
               return (
                 <li key={index}>
-                  <Link to={`${match.url}${story.id}`}> {story.name} </Link>
-                  : {`${prefix}${match.url}${story.id}`}
+                  <Link to={`${matchPath}${story.id}`}> {story.name} </Link>
+                  : {`${prefix}${matchPath}${story.id}`}
                 </li>
               );
             })
