@@ -8,7 +8,7 @@ module.exports = {
   output: {
     filename: 'bundle.[hash].js',
     path: 'build',
-    publicPath: './'
+    publicPath: './build'
   },
   module: {
     preLoaders: [common.jsonLoader],

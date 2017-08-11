@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "webpack-dev-server --config ./webpack.config.dev.js",
-    "deploy:gh-pages": "./deploy/deploy.sh"
+    "deploy:gh": "./deploy/deploy-gh.sh",
+    "deploy:prod": "./deploy/deploy-prod.sh"
   },
   "devDependencies": {
     "autoprefixer": "^6.3.0",
